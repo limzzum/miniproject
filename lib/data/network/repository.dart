@@ -24,15 +24,20 @@ class ApiRepository{
     return UserInfo.formJson(result);
   }
   refreshToken() async{
+    print("refreshToken");
     Uri uri = Uri.parse("https://kauth.kakao.com/oauth/token"
     );
     var response= await http.post(uri,headers: {"Content-type": "application/x-www-form-urlencoded;charset=utf-8",}
     ,body: {"grant_type":"refresh_token" ,"client_id":"9338dac6db9d9162c95333adbcb97200","refresh_token":"${Application.preferences.get(KEY.refreshToken)}"}) ;
     print(response.body);
+    var result=jsonDecode(response.body);
+    Application.preferences.setString(KEY.accessToken, result["access_token"]);
+    Application.preferences.setString(KEY.refreshToken, result["refresh_token"]);
     print(response.statusCode);
   }
 
   Future<List<Poster>> callDBdata(kind) async{
+    List<Poster> nullList=[];
     print("calldata");
     print(kind);
     Uri uri = Uri.parse(
@@ -45,8 +50,10 @@ class ApiRepository{
     print(json);
     var list= json["dbs"]["db"];
     print(list);
-    return list.map<Poster>((e) => Poster.fromJson(e)).toList();
-
+    if(list!=null) {
+      return list.map<Poster>((e) => Poster.fromJson(e)).toList();
+    }
+    return nullList;
 
 
 

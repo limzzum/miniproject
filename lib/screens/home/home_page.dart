@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miniproject/configs/application.dart';
 import 'package:miniproject/controller/controller.dart';
+import 'package:miniproject/data/models/musicalModel.dart';
 import 'package:miniproject/screens/home/search.dart';
 
 class HomePage extends StatefulWidget {
@@ -120,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                   Expanded(child: GetBuilder<Controller>(builder: (_) {
                     return TabBarView(
                         children: [
-                      list("musical"),
+                      list(0),
                       list(1),
                       list(2),
                       list(3),
@@ -136,6 +137,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   list( ct) {
+    Controller controller=Get.find<Controller>();
+    List<Poster> lists =getType(ct);
     return Column(children: [
       SizedBox(
         height: 20.w,
@@ -148,15 +151,15 @@ class _HomePageState extends State<HomePage> {
           height: 130.w,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: Get.find<Controller>().poster.length,//.length,
+              itemCount: lists.length,//.length,
               itemBuilder: (context, index) {
-                return Get.find<Controller>().poster.isNotEmpty
+                return lists.isNotEmpty
                     ? Container(
                         margin: EdgeInsets.only(right: 20.w),
                         width: 100.w,
                         height: 130.w,
                         child: Image.network(
-                            Get.find<Controller>().poster[index].image),
+                            lists[index].image),
                       )
                     : Container();
               }),
@@ -174,15 +177,15 @@ class _HomePageState extends State<HomePage> {
           height: 130.w,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: Get.find<Controller>().poster.length,
+              itemCount: lists.length,
               itemBuilder: (context, index) {
-                return Get.find<Controller>().poster.isNotEmpty
+                return lists.isNotEmpty
                     ? Container(
                         margin: EdgeInsets.only(right: 20.w),
                         width: 100.w,
                         height: 130.w,
                         child: Image.network(
-                            Get.find<Controller>().poster[index].image),
+                            lists[index].image),
                       )
                     : Container();
               }),
@@ -200,15 +203,15 @@ class _HomePageState extends State<HomePage> {
           height: 130.w,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: Get.find<Controller>().poster.length,
+              itemCount: lists.length,
               itemBuilder: (context, index) {
-                return Get.find<Controller>().poster.isNotEmpty
+                return lists.isNotEmpty
                     ? Container(
                         margin: EdgeInsets.only(right: 20.w),
                         width: 100.w,
                         height: 130.w,
                         child: Image.network(
-                            Get.find<Controller>().poster[index].image),
+                            lists[index].image),
                       )
                     : Container();
               }),
@@ -219,4 +222,14 @@ class _HomePageState extends State<HomePage> {
       ),
     ]);
   }
+getType(ct){
+switch(ct){
+case 0: return Get.find<Controller>().musical;
+case 1: return Get.find<Controller>().theater;
+case 2: return Get.find<Controller>().classic;
+case 3: return Get.find<Controller>().opera;
+case 4: return Get.find<Controller>().korean_tranditional;
+case 5: return Get.find<Controller>().complex;
+}
+}
 }

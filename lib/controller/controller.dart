@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:miniproject/configs/application.dart';
 import 'package:miniproject/data/models/musicalModel.dart';
 import 'package:miniproject/data/models/userModel.dart';
@@ -10,7 +11,7 @@ class Controller extends GetxController{
   bool login=false;
   int currentIndex=0;
   late UserInfo userInfo;
-  List<Poster> poster=[];
+  List<List<Poster>> poster=[];
   List<Poster> musical=[];
   List<Poster> theater=[];
   List<Poster> classic=[];
@@ -31,37 +32,43 @@ class Controller extends GetxController{
   }
 
   loadPoster() async{
-    poster=await ApiRepository().callDBdata("AAAA");
-    print("poster11+$poster");
+    print('loadposter호출');
+    poster[0]=await ApiRepository().callDBdata(KEY.musical);
+    poster[1]=await ApiRepository().callDBdata(KEY.theater);
+    poster[2]=await ApiRepository().callDBdata(KEY.classic);
+    poster[3]=await ApiRepository().callDBdata(KEY.opera);
+    poster[4]=await ApiRepository().callDBdata(KEY.koreaTranditional);
+    poster[5]=await ApiRepository().callDBdata(KEY.complex);
+    print("poster[0]+$poster");
     update();
   }
   loadMusical() async{
-    poster=await ApiRepository().callDBdata(KEY.musical);
+    musical=await ApiRepository().callDBdata(KEY.musical);
     print("poster11+$poster");
     update();
   }
   loadTheater() async{
-    poster=await ApiRepository().callDBdata(KEY.theater);
+    theater=await ApiRepository().callDBdata(KEY.theater);
     print("poster11+$poster");
     update();
   }
   loadClassic() async{
-    poster=await ApiRepository().callDBdata(KEY.classic);
+    classic=await ApiRepository().callDBdata(KEY.classic);
     print("poster11+$poster");
     update();
   }
   loadOpera() async{
-    poster=await ApiRepository().callDBdata(KEY.opera);
+    opera=await ApiRepository().callDBdata(KEY.opera);
     print("poster11+$poster");
     update();
   }
   loadTranditional() async{
-    poster=await ApiRepository().callDBdata(KEY.koreaTranditional);
+    korean_tranditional=await ApiRepository().callDBdata(KEY.koreaTranditional);
     print("poster11+$poster");
     update();
   }
   loadComplex() async{
-    poster=await ApiRepository().callDBdata(KEY.complex);
+    complex=await ApiRepository().callDBdata(KEY.complex);
     print("poster11+$poster");
     update();
   }
