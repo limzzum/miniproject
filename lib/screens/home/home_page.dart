@@ -1,5 +1,6 @@
-import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miniproject/configs/application.dart';
 import 'package:miniproject/controller/controller.dart';
 import 'package:miniproject/data/models/musicalModel.dart';
+import 'package:miniproject/data/network/repository.dart';
 import 'package:miniproject/screens/home/search.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,31 +19,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> choice = [
-    KEY.musical,
-    KEY.theater,
-    KEY.classic,
-    KEY.opera,
-    KEY.koreaTranditional,
-    KEY.complex
-  ];
+
 
   @override
   void initState() {
-    Controller controller=Get.put(Controller());
-    controller.loadMusical();
-    controller.loadTheater();
-    controller.loadClassic();
-    controller.loadOpera();
-    controller.loadTranditional();
-    controller.loadComplex();
-
+    Controller controller = Get.put(Controller());
+    //controller.loadPoster(2);
+   // controller.loadRanking(5);
+  controller.loadPoster(0);controller.loadPoster(1);controller.loadPoster(2);controller.loadPoster(3);controller.loadPoster(4);controller.loadPoster(5);
+ controller.loadRanking(0);controller.loadRanking(1);controller.loadRanking(2);controller.loadRanking(3);controller.loadRanking(4);controller.loadRanking(5);
   }
 
   @override
   Widget build(BuildContext context) {
-    // Get.put(Controller()).loadPoster();
-
     return SingleChildScrollView(
       child: Container(
         alignment: Alignment.topCenter,
@@ -58,7 +48,6 @@ class _HomePageState extends State<HomePage> {
                   TabBar(
                     onTap: (index) {
                       print(index);
-                     // Get.find<Controller>().loadPoster(choice[index]);
                     },
                     tabs:
                         //choice.map((e) => Tab(text: Text(e,style: TextStyle(fontSize: 11.sp, color: Colors.black)).toString())).toList(),
@@ -119,8 +108,7 @@ class _HomePageState extends State<HomePage> {
                             ])),
                   ),
                   Expanded(child: GetBuilder<Controller>(builder: (_) {
-                    return TabBarView(
-                        children: [
+                    return TabBarView(children: [
                       list(0),
                       list(1),
                       list(2),
@@ -136,100 +124,100 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  list( ct) {
-    Controller controller=Get.find<Controller>();
-    List<Poster> lists =getType(ct);
+  list(ct) {
+    var controller = Get.find<Controller>();
     return Column(children: [
       SizedBox(
         height: 20.w,
       ),
-      Align(
+      const Align(
           alignment: Alignment.topLeft,
           child: Text("#예매순위", style: TextStyle(fontWeight: FontWeight.bold))),
- Container(
+      Container(
+        width: 400.w,
+        height: 130.w,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: Get.find<Controller>().ranking[ct].length, //.length,
+            itemBuilder: (context, index) {
+              return Get.find<Controller>().ranking[ct].isNotEmpty
+                  ? Container(
+                      clipBehavior: Clip.hardEdge,
+                      margin: EdgeInsets.only(right: 20.w),
+                      width: 100.w,
+                      height: 130.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.w),
+                      ),
+                      child:
+                      Get.find<Controller>().ranking[ct][index].image.contains('http')?
+                          Image.network(Get.find<Controller>().ranking[ct][index].image,fit:BoxFit.cover):
+                      Image.network("http://www.kopis.or.kr" +
+                          Get.find<Controller>().ranking[ct][index].image,fit:BoxFit.cover),
+                    )
+                  : Container();
+            }),
+      ),
+      SizedBox(
+        height: 20.w,
+      ),
+       const Align(
+          alignment: Alignment.topLeft,
+          child: Text("#예매순위", style: TextStyle(fontWeight: FontWeight.bold))),
+      Container(
           width: 400.w,
           height: 130.w,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: lists.length,//.length,
+              itemCount: controller.poster[ct].length,
               itemBuilder: (context, index) {
-                return lists.isNotEmpty
+                return controller.poster[ct].isNotEmpty
                     ? Container(
+                        clipBehavior: Clip.hardEdge,
                         margin: EdgeInsets.only(right: 20.w),
                         width: 100.w,
                         height: 130.w,
-                        child: Image.network(
-                            lists[index].image),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.w),
+                        ),
+                        child:Get.find<Controller>().poster[ct][index].image.contains('http')?
+                        Image.network(controller.poster[ct][index].image,fit:BoxFit.cover):
+                        Image.network("http://www.kopis.or.kr" +controller.poster[ct][index].image,fit:BoxFit.cover)
                       )
                     : Container();
               }),
         ),
-
       SizedBox(
         height: 20.w,
       ),
-      Align(
+       const Align(
           alignment: Alignment.topLeft,
           child: Text("#예매순위", style: TextStyle(fontWeight: FontWeight.bold))),
-      GetBuilder<Controller>(builder: (_) {
-        return Container(
+      Container(
           width: 400.w,
           height: 130.w,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: lists.length,
+              itemCount: Get.find<Controller>().poster[ct].length,
               itemBuilder: (context, index) {
-                return lists.isNotEmpty
+                return Get.find<Controller>().poster[ct].isNotEmpty
                     ? Container(
+                        clipBehavior: Clip.hardEdge,
                         margin: EdgeInsets.only(right: 20.w),
                         width: 100.w,
                         height: 130.w,
-                        child: Image.network(
-                            lists[index].image),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.w),
+                        ),
+                        child:
+                            Image.network(Get.find<Controller>().poster[ct][index].image,fit:BoxFit.cover,),
                       )
                     : Container();
               }),
-        );
-      }),
-      SizedBox(
-        height: 20.w,
-      ),
-      Align(
-          alignment: Alignment.topLeft,
-          child: Text("#예매순위", style: TextStyle(fontWeight: FontWeight.bold))),
-      GetBuilder<Controller>(builder: (_) {
-        return Container(
-          width: 400.w,
-          height: 130.w,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: lists.length,
-              itemBuilder: (context, index) {
-                return lists.isNotEmpty
-                    ? Container(
-                        margin: EdgeInsets.only(right: 20.w),
-                        width: 100.w,
-                        height: 130.w,
-                        child: Image.network(
-                            lists[index].image),
-                      )
-                    : Container();
-              }),
-        );
-      }),
+        ),
       SizedBox(
         height: 20.w,
       ),
     ]);
   }
-getType(ct){
-switch(ct){
-case 0: return Get.find<Controller>().musical;
-case 1: return Get.find<Controller>().theater;
-case 2: return Get.find<Controller>().classic;
-case 3: return Get.find<Controller>().opera;
-case 4: return Get.find<Controller>().korean_tranditional;
-case 5: return Get.find<Controller>().complex;
-}
-}
 }

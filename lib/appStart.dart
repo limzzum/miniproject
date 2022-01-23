@@ -25,11 +25,11 @@ class _AppStartState extends State<AppStart> {
             builder: (context, snapshot) {
               return Container(
                   child:
-                      Application.preferences.getString(KEY.accessToken) == null
-                          ? LoginPage()
-                          : BottomNavigation()
+                  GetBuilder<Controller>(builder: (_)=>_.login? const BottomNavigation(): const LoginPage()),
+                      // Application.preferences.getString(KEY.accessToken) == null
+                      //     ? LoginPage()
+                      //     : BottomNavigation()
 
-                  //GetBuilder<Controller>(builder: (_)=>_.login? const BottomNavigation(): const LoginPage()),
                   );
             }));
   }
