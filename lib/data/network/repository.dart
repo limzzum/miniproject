@@ -51,10 +51,14 @@ class ApiRepository{
     //print(json);
     var list= json["dbs"]["db"];
     print(list);
-    if(list!=null) {
-      return list.map<Poster>((e)=>Poster.fromJson(e)).toList();
-      //list.map<Poster>((e) => Poster.fromJson(e)).toList();
-    }
+  //  print("thisis+${Poster.fromJson(list)}");
+
+    if(list!=null)
+    {
+      try{return list.map<Poster>((e)=>Poster.fromJson(e)).toList();}
+      catch(e){
+        print("오류발생$e");
+        return [Poster.fromJson(list)];}}
     return nullList;
   }
 
@@ -72,7 +76,11 @@ class ApiRepository{
     var list= json["boxofs"]["boxof"];
     print('type=$type,list=$list');
     if(list!=null) {
-      return list.map<Ranking>((e) => Ranking.fromJson(e)).toList();
+      try{
+      return list.map<Ranking>((e) => Ranking.fromJson(e)).toList();}
+      catch(e){
+        return [Ranking.fromJson(list)];
+      }
     }
     return nullList;
   }

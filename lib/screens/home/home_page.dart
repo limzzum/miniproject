@@ -24,10 +24,12 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     Controller controller = Get.put(Controller());
-    //controller.loadPoster(2);
-   // controller.loadRanking(5);
-  controller.loadPoster(0);controller.loadPoster(1);controller.loadPoster(2);controller.loadPoster(3);controller.loadPoster(4);controller.loadPoster(5);
- controller.loadRanking(0);controller.loadRanking(1);controller.loadRanking(2);controller.loadRanking(3);controller.loadRanking(4);controller.loadRanking(5);
+    for(int i=0;i<6; i++){
+      controller.loadPoster(i);
+      controller.loadRanking(i);
+    }
+ //  controller.loadPoster(0);controller.loadPoster(1);controller.loadPoster(2);controller.loadPoster(3);controller.loadPoster(4);controller.loadPoster(5);
+ // controller.loadRanking(0);controller.loadRanking(1);controller.loadRanking(2);controller.loadRanking(3);controller.loadRanking(4);controller.loadRanking(5);
   }
 
   @override
@@ -163,7 +165,7 @@ class _HomePageState extends State<HomePage> {
       ),
        const Align(
           alignment: Alignment.topLeft,
-          child: Text("#예매순위", style: TextStyle(fontWeight: FontWeight.bold))),
+          child: Text("#포스터", style: TextStyle(fontWeight: FontWeight.bold))),
       Container(
           width: 400.w,
           height: 130.w,
@@ -192,7 +194,7 @@ class _HomePageState extends State<HomePage> {
       ),
        const Align(
           alignment: Alignment.topLeft,
-          child: Text("#예매순위", style: TextStyle(fontWeight: FontWeight.bold))),
+          child: Text("#포스", style: TextStyle(fontWeight: FontWeight.bold))),
       Container(
           width: 400.w,
           height: 130.w,

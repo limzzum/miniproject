@@ -37,24 +37,14 @@ class Controller extends GetxController{
   }
   loadPoster(key) async{
     print('loadposter호출');
-    // poster[0]=await ApiRepository().callPoster(KEY.musical);
-    // poster[1]=await ApiRepository().callPoster(KEY.theater);
-    // poster[2]=await ApiRepository().callPoster(KEY.classic);
-    // poster[3]=await ApiRepository().callPoster(KEY.opera);
-    // poster[4]=await ApiRepository().callPoster(KEY.koreaTranditional);
-    poster[key]=await ApiRepository().callPoster(choice[key]);
-    print(poster);
+    poster[key]=await ApiRepository().callPoster(choice[key]) ;
+    print("poster[$key]+${poster[key]}");
     update();
   }
   loadRanking(key) async{
     print('loadposter호출');
-    // ranking[0]=await ApiRepository().callRanking(KEY.musical);
-    // ranking[1]=await ApiRepository().callRanking(KEY.theater);
-    // ranking[2]=await ApiRepository().callRanking(KEY.classic);
-    // ranking[3]=await ApiRepository().callRanking(KEY.opera);
-    // ranking[4]=await ApiRepository().callRanking(KEY.koreaTranditional);
     ranking[key]=await ApiRepository().callRanking(choice[key]);
-    print("poster[0]+$ranking");
+    print("ranking[$key]+${ranking[key]}");
     update();
   }
 
