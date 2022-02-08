@@ -19,16 +19,16 @@ class _AppStartState extends State<AppStart> {
   Widget build(BuildContext context) {
     Get.put(Controller());
     return ScreenUtilInit(
-        designSize: MediaQuery.of(context).size,
+        designSize: MediaQuery.of(context).size,//const Size(39.69,85.94),
         builder: () => FutureBuilder(
             future: Application().setPreference(),
             builder: (context, snapshot) {
               return Container(
                   child:
-                  GetBuilder<Controller>(builder: (_)=>_.login? const BottomNavigation(): const LoginPage()),
-                      // Application.preferences.getString(KEY.accessToken) == null
-                      //     ? LoginPage()
-                      //     : BottomNavigation()
+                 // GetBuilder<Controller>(builder: (_)=>_.login? const BottomNavigation(): const LoginPage()),
+                      Application.preferences.getString(KEY.accessToken) == null
+                          ? LoginPage()
+                          : BottomNavigation()
 
                   );
             }));

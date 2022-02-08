@@ -3,6 +3,7 @@ import 'package:kakao_flutter_sdk/all.dart';
 import 'package:get/get.dart';
 import 'package:miniproject/configs/application.dart';
 import 'package:miniproject/controller/controller.dart';
+import 'package:miniproject/data/network/repository.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,7 +21,8 @@ class _LoginPageState extends State<LoginPage> {
     OAuthToken token = await AuthApi.instance.issueAccessToken(authCode);
     Application.preferences.setString("accessToken", token.accessToken);
     Application.preferences.setString("refreshToken", token.refreshToken);
-    Get.put(Controller()).changeLogin(true);
+    Get.put(Controller()).checkLogin();
+  //  Get.find<Controller>().login==true?Get.find<Controller>().loadUserInfo():Container();
   }
   @override
   Widget build(BuildContext context) {

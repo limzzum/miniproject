@@ -16,10 +16,11 @@ class ApiRepository{
         );
     var response= (await http.get(uri,headers: {"Content-type": "application/x-www-form-urlencoded;charset=utf-8",
     "Authorization": "Bearer ${Application.preferences.get(KEY.accessToken)}"})) ;
-    print(response.body);
-    print(response.statusCode);
+    print("userinfo"+response.body);
+    print("userinfo"+response.statusCode.toString());
     if(response.statusCode==401){
       await refreshToken();
+      callUserInfo();
     }
     var result= jsonDecode(response.body);
     return UserInfo.formJson(result);

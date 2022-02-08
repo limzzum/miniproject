@@ -6,6 +6,8 @@ Map<String,String> ko={
   //C
   'complex':'복합',
   'classic':'클래식',
+  'community':'컵뮤니티',
+  'calendar':'티켓캘린더',
   //D
   'dancing':'무용',
   //E
@@ -15,6 +17,7 @@ Map<String,String> ko={
   //G
 
   //H
+  'home':'홈',
 
   //I
 
@@ -26,6 +29,7 @@ Map<String,String> ko={
 
   //M
   'musical':'뮤지컬',
+  'myPage':'myPage',
   //N
 
   //O

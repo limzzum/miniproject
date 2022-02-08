@@ -18,13 +18,18 @@ List<String> choice = [
 
 class Controller extends GetxController{
   bool login=true;
-  int currentIndex=0;
+  int currentIndex=2;
   late UserInfo userInfo;
   List<List<Poster>> poster=[[],[],[],[],[],[]];
   List<List<Ranking>> ranking=[[],[],[],[],[],[]];
 
   loadUserInfo() async{
     userInfo= await ApiRepository().callUserInfo();
+    update();
+  }
+  checkLogin(){
+    Application.preferences.get(KEY.accessToken)!=null?
+        login=true: login=false;
     update();
   }
   changeLogin(check){

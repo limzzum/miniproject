@@ -7,6 +7,8 @@ Map<String,String> en={
   //C
   'classic':'classic',
   'complex':'complex',
+  'community':'community',
+  'calendar':'calendar',
   //D
   'dancing':'dancing',
   //E
@@ -16,6 +18,7 @@ Map<String,String> en={
   //G
 
   //H
+  'home':'home',
 
   //I
 
@@ -27,6 +30,7 @@ Map<String,String> en={
 
   //M
   'musical':'musical',
+  'myPage':'myPage',
   //N
 
   //O

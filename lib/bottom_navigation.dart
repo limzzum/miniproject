@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:miniproject/screens/calendar/calendar_page.dart';
+import 'package:miniproject/screens/community/community_page.dart';
 import 'package:miniproject/screens/home/home_page.dart';
 import 'package:miniproject/screens/mypage/mypage.dart';
 
@@ -22,22 +24,28 @@ class _BottomNavigationState extends State<BottomNavigation> {
       Scaffold(
       body: IndexedStack(
         children: const [
+          CommunityPage(),
+          CalendarPage(),
           HomePage(),
-          MyPage()
+          MyPage(),
+
         ],
         index: controller.currentIndex,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const[
-          BottomNavigationBarItem(icon: Icon(Icons.ac_unit),label:'home'),
-          BottomNavigationBarItem(icon: Icon(Icons.access_alarm),label: "mypage")
+        items: [
+          BottomNavigationBarItem(icon: const Icon(Icons.ac_unit),label: 'community'.tr),
+          BottomNavigationBarItem(icon: const Icon(Icons.access_alarm),label: "calendar".tr),
+          BottomNavigationBarItem(icon: const Icon(Icons.ac_unit),label:'home'.tr),
+          BottomNavigationBarItem(icon: const Icon(Icons.access_alarm),label: "myPage".tr)
         ],
 
        onTap: (index){
           controller.changeIndex(index);
        },
         currentIndex: controller.currentIndex,
-        selectedItemColor: Color.fromARGB(50, 50, 8, 8),
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.black,
       ),
     ));
   }
