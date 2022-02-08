@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miniproject/configs/application.dart';
+import 'package:miniproject/data/network/repository.dart';
 
 class CommunityPage extends StatefulWidget {
   const CommunityPage({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class _CommunityPageState extends State<CommunityPage> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: TextButton(onPressed: (){Application.preferences.remove(KEY.accessToken);}, child: Text('tokenreset'),),
+      child: TextButton(onPressed: (){}, child: Text('tokenreset'),),
     );
   }
 }

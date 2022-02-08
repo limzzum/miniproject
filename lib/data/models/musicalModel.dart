@@ -74,3 +74,80 @@ class Ranking {
     area: json["area"] ?? "no area",
   );
 }
+
+class DetailPoster {
+  DetailPoster({
+    required this.id,
+   // required this.subId,
+    required this.name,
+    required this.from,
+    required this.to,
+    required this.placeName,
+    required this.cast,
+    required this.producer,
+    required this.runTime,
+    required this.ableAge,
+    required this.company,
+    required this.price,
+    required this.image,
+    required this.cat,
+    required this.type,
+   // required this.status,
+    required this.openRun,
+    required this.styurls,
+    required this.time,
+  });
+
+  String id;
+ // String subId;
+  String name;
+  String from;
+  String to;
+  String placeName;
+  String cast;
+  String producer;
+  String runTime;
+  String ableAge;
+  String company;
+  String price;
+  String image;
+  String cat;
+  String type;
+ // String status;
+  String openRun;
+  List<dynamic>? styurls;
+  String time;
+
+  factory DetailPoster.fromJson(Map<String, dynamic> json) => DetailPoster(
+    id: json["mt20id"]?? "",
+  //  subId: json["subId"],
+    name: json["prfnm"]?? "",
+    from: json["prfpdfrom"]?? "",
+    to: json["prfpdto"]?? "",
+    placeName: json["fcltynm"] ?? "placeName",
+    cast: json["prfcast"] ?? "cast",
+    producer: json["prfcrew"]?? "crew",
+    runTime: json["prfruntime"]?? "",
+    ableAge: json["prfage"]?? "",
+    company: json["entrpsnm"]?? "",
+    price: json["pcseguidance"]?? "",
+    image: json["poster"]?? "",
+    cat: json["sty"]?? "sty"?? "",
+    type: json["genrenm"]?? "",
+    //status: json["prfstatus"],
+    openRun: json["openrun"]?? "",
+    styurls: styurl.fromJson(json["styurls"]).url?? [], // List<String>.from(json["styurls"].map<String>((x) => x)),
+    time: json["dtguidance"]?? "");
+}
+
+class styurl {
+  styurl({
+    required this.url,
+  });
+
+  List<dynamic>? url;
+
+  factory styurl.fromJson(Map<String, dynamic>? json) => styurl(
+    url: [json?["styurl"]??""],
+  );
+}

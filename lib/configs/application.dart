@@ -10,6 +10,7 @@ class Application extends GetxController{
     preferences= await SharedPreferences.getInstance();
     print("preferencs 초기화");
     update();
+
     return 'loadData';
 }
 
@@ -17,6 +18,8 @@ class Application extends GetxController{
 }
 
 class KEY{
+  static String clientId="9338dac6db9d9162c95333adbcb97200";
+  static String serviceKey="178a9353e86d47b0a1d38c9f7a6825c1";
   static double width=39.69;
   static double height=85.94;
   static String accessToken="accessToken";

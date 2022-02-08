@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:miniproject/screens/calendar/calendar2.dart';
 import 'package:miniproject/screens/calendar/calendar_page.dart';
 import 'package:miniproject/screens/community/community_page.dart';
 import 'package:miniproject/screens/home/home_page.dart';

@@ -22,6 +22,13 @@ class Controller extends GetxController{
   late UserInfo userInfo;
   List<List<Poster>> poster=[[],[],[],[],[],[]];
   List<List<Ranking>> ranking=[[],[],[],[],[],[]];
+  late DetailPoster detailPoster;
+
+  loadDetailPoster(id) async{
+    detailPoster= await ApiRepository().callDetailPoster(id);
+    print('detail호출됨');
+    update();
+  }
 
   loadUserInfo() async{
     userInfo= await ApiRepository().callUserInfo();

@@ -17,20 +17,24 @@ class AppStart extends StatefulWidget {
 class _AppStartState extends State<AppStart> {
   @override
   Widget build(BuildContext context) {
-    Get.put(Controller());
+    Get.put(Application());
     return ScreenUtilInit(
         designSize: MediaQuery.of(context).size,//const Size(39.69,85.94),
         builder: () => FutureBuilder(
             future: Application().setPreference(),
             builder: (context, snapshot) {
+              if(snapshot.hasData==false){
+                return const CircularProgressIndicator();
+              }
               return Container(
                   child:
                  // GetBuilder<Controller>(builder: (_)=>_.login? const BottomNavigation(): const LoginPage()),
-                      Application.preferences.getString(KEY.accessToken) == null
+                  GetBuilder<Application>(
+                  builder: (_)=> Application.preferences.getString(KEY.accessToken) == null
                           ? LoginPage()
                           : BottomNavigation()
 
-                  );
+                  ));
             }));
   }
 }

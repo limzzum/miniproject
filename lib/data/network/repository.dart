@@ -11,6 +11,7 @@ import 'package:xml2json/xml2json.dart';
 
 class ApiRepository{
 
+  //kakao userInfo
   callUserInfo() async{
     Uri uri = Uri.parse("https://kapi.kakao.com" + "/v2/user/me"
         );
@@ -25,12 +26,13 @@ class ApiRepository{
     var result= jsonDecode(response.body);
     return UserInfo.formJson(result);
   }
+
   refreshToken() async{
     print("refreshToken");
     Uri uri = Uri.parse("https://kauth.kakao.com/oauth/token"
     );
     var response= await http.post(uri,headers: {"Content-type": "application/x-www-form-urlencoded;charset=utf-8",}
-    ,body: {"grant_type":"refresh_token" ,"client_id":"9338dac6db9d9162c95333adbcb97200","refresh_token":"${Application.preferences.get(KEY.refreshToken)}"}) ;
+    ,body: {"grant_type":"refresh_token" ,"client_id":KEY.clientId,"refresh_token":"${Application.preferences.get(KEY.refreshToken)}"}) ;
   //  print(response.body);
     var result=jsonDecode(response.body);
     Application.preferences.setString(KEY.accessToken, result["access_token"]);
@@ -38,6 +40,7 @@ class ApiRepository{
     print(response.statusCode);
   }
 
+  //전체포스터 장르
   Future<List<Poster>> callPoster(kind) async{
     List<Poster> nullList=[];
     print("calldata");
@@ -49,10 +52,8 @@ class ApiRepository{
 
     var xmltojson= Xml2Json()..parse(result.toXmlString());
     var json= jsonDecode(xmltojson.toParker());
-    //print(json);
     var list= json["dbs"]["db"];
     print(list);
-  //  print("thisis+${Poster.fromJson(list)}");
 
     if(list!=null)
     {
@@ -63,6 +64,7 @@ class ApiRepository{
     return nullList;
   }
 
+  //순위 장르별
   Future<List<Ranking>> callRanking(type) async{
     print(type);
     List<Ranking> nullList=[];
@@ -84,6 +86,28 @@ class ApiRepository{
       }
     }
     return nullList;
+  }
+
+  Future<DetailPoster> callDetailPoster(id) async{
+
+    Uri uri = Uri.parse(
+        BaseUrl.detailPoster+id+"?service=${KEY.serviceKey}");
+    var response = await http.get(uri);
+    XmlDocument result= XmlDocument.parse(response.body);
+
+    var xmltojson= Xml2Json()..parse(result.toXmlString());
+    var json= jsonDecode(xmltojson.toParker());
+    print(json);
+    var list= json["dbs"]["db"];
+    print(list);
+    return DetailPoster.fromJson(list);
+    // if(list!=null) {
+    //   try{
+    //     return list.map<Ranking>((e) => Ranking.fromJson(e)).toList();}
+    //   catch(e){
+    //     return [Ranking.fromJson(list)];
+    //   }
+    // }
   }
 
 

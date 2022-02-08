@@ -9,6 +9,7 @@ import 'package:miniproject/configs/application.dart';
 import 'package:miniproject/controller/controller.dart';
 import 'package:miniproject/data/models/musicalModel.dart';
 import 'package:miniproject/data/network/repository.dart';
+import 'package:miniproject/screens/home/detail_poster.dart';
 import 'package:miniproject/screens/home/search.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,17 +20,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
   @override
   void initState() {
     Controller controller = Get.put(Controller());
-    for(int i=0;i<6; i++){
+    for (int i = 0; i < 6; i++) {
       controller.loadPoster(i);
       controller.loadRanking(i);
     }
- //  controller.loadPoster(0);controller.loadPoster(1);controller.loadPoster(2);controller.loadPoster(3);controller.loadPoster(4);controller.loadPoster(5);
- // controller.loadRanking(0);controller.loadRanking(1);controller.loadRanking(2);controller.loadRanking(3);controller.loadRanking(4);controller.loadRanking(5);
+    //  controller.loadPoster(0);controller.loadPoster(1);controller.loadPoster(2);controller.loadPoster(3);controller.loadPoster(4);controller.loadPoster(5);
+    // controller.loadRanking(0);controller.loadRanking(1);controller.loadRanking(2);controller.loadRanking(3);controller.loadRanking(4);controller.loadRanking(5);
   }
 
   @override
@@ -140,22 +139,37 @@ class _HomePageState extends State<HomePage> {
         height: 130.w,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: Get.find<Controller>().ranking[ct].length, //.length,
+            itemCount: controller.ranking[ct].length, //.length,
             itemBuilder: (context, index) {
-              return Get.find<Controller>().ranking[ct].isNotEmpty
-                  ? Container(
-                      clipBehavior: Clip.hardEdge,
-                      margin: EdgeInsets.only(right: 20.w),
-                      width: 100.w,
-                      height: 130.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.w),
+              return controller.ranking[ct].isNotEmpty
+                  ? GestureDetector(
+                      onTap: () {
+                        controller.loadDetailPoster(
+                            Get.find<Controller>().ranking[ct][index].id);
+                        Get.to(()=>const DetailPosterPage());
+                      },
+                      child: Container(
+                        clipBehavior: Clip.hardEdge,
+                        margin: EdgeInsets.only(right: 20.w),
+                        width: 100.w,
+                        height: 130.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.w),
+                        ),
+                        child: controller
+                                .ranking[ct][index]
+                                .image
+                                .contains('http')
+                            ? Image.network(
+                                controller.ranking[ct][index].image,
+                                fit: BoxFit.cover)
+                            : Image.network(
+                                "http://www.kopis.or.kr" +
+                                   controller
+                                        .ranking[ct][index]
+                                        .image,
+                                fit: BoxFit.cover),
                       ),
-                      child:
-                      Get.find<Controller>().ranking[ct][index].image.contains('http')?
-                          Image.network(Get.find<Controller>().ranking[ct][index].image,fit:BoxFit.cover):
-                      Image.network("http://www.kopis.or.kr" +
-                          Get.find<Controller>().ranking[ct][index].image,fit:BoxFit.cover),
                     )
                   : Container();
             }),
@@ -163,47 +177,68 @@ class _HomePageState extends State<HomePage> {
       SizedBox(
         height: 20.w,
       ),
-       const Align(
+      const Align(
           alignment: Alignment.topLeft,
           child: Text("#포스터", style: TextStyle(fontWeight: FontWeight.bold))),
       Container(
-          width: 400.w,
-          height: 130.w,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: controller.poster[ct].length,
-              itemBuilder: (context, index) {
-                return controller.poster[ct].isNotEmpty
-                    ? Container(
-                        clipBehavior: Clip.hardEdge,
-                        margin: EdgeInsets.only(right: 20.w),
-                        width: 100.w,
-                        height: 130.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.w),
-                        ),
-                        child:Get.find<Controller>().poster[ct][index].image.contains('http')?
-                        Image.network(controller.poster[ct][index].image,fit:BoxFit.cover):
-                        Image.network("http://www.kopis.or.kr" +controller.poster[ct][index].image,fit:BoxFit.cover)
-                      )
-                    : Container();
-              }),
-        ),
+        width: 400.w,
+        height: 130.w,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: controller.poster[ct].length,
+            itemBuilder: (context, index) {
+              return controller.poster[ct].isNotEmpty
+                  ? GestureDetector(
+                      onTap: () {
+                        controller.loadDetailPoster(controller.poster[ct][index].id);
+                        Get.to(()=>const DetailPosterPage());
+                        // ApiRepository().callDetailPoster(
+                        //     Get.find<Controller>().poster[ct][index].id);
+                      },
+                      child: Container(
+                          clipBehavior: Clip.hardEdge,
+                          margin: EdgeInsets.only(right: 20.w),
+                          width: 100.w,
+                          height: 130.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5.w),
+                          ),
+                          child: Get.find<Controller>()
+                                  .poster[ct][index]
+                                  .image
+                                  .contains('http')
+                              ? Image.network(
+                                  controller.poster[ct][index].image,
+                                  fit: BoxFit.cover)
+                              : Image.network(
+                                  "http://www.kopis.or.kr" +
+                                      controller.poster[ct][index].image,
+                                  fit: BoxFit.cover)),
+                    )
+                  : Container();
+            }),
+      ),
       SizedBox(
         height: 20.w,
       ),
-       const Align(
+      const Align(
           alignment: Alignment.topLeft,
           child: Text("#포스", style: TextStyle(fontWeight: FontWeight.bold))),
       Container(
-          width: 400.w,
-          height: 130.w,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: Get.find<Controller>().poster[ct].length,
-              itemBuilder: (context, index) {
-                return Get.find<Controller>().poster[ct].isNotEmpty
-                    ? Container(
+        width: 400.w,
+        height: 130.w,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: Get.find<Controller>().poster[ct].length,
+            itemBuilder: (context, index) {
+              return Get.find<Controller>().poster[ct].isNotEmpty
+                  ? GestureDetector(
+                      onTap: () {
+                        controller.loadDetailPoster(
+                            Get.find<Controller>().poster[ct][index].id);
+                        Get.to(()=>const DetailPosterPage());
+                      },
+                      child: Container(
                         clipBehavior: Clip.hardEdge,
                         margin: EdgeInsets.only(right: 20.w),
                         width: 100.w,
@@ -211,12 +246,15 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5.w),
                         ),
-                        child:
-                            Image.network(Get.find<Controller>().poster[ct][index].image,fit:BoxFit.cover,),
-                      )
-                    : Container();
-              }),
-        ),
+                        child: Image.network(
+                          Get.find<Controller>().poster[ct][index].image,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    )
+                  : Container();
+            }),
+      ),
       SizedBox(
         height: 20.w,
       ),
