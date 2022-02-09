@@ -144,9 +144,9 @@ class _HomePageState extends State<HomePage> {
               return controller.ranking[ct].isNotEmpty
                   ? GestureDetector(
                       onTap: () {
-                        controller.loadDetailPoster(
-                            Get.find<Controller>().ranking[ct][index].id);
-                        Get.to(()=>const DetailPosterPage());
+                        // controller.loadDetailPoster(
+                        //     Get.find<Controller>().ranking[ct][index].id);
+                        Get.to(()=> DetailPosterPage(id:controller.ranking[ct][index].id));
                       },
                       child: Container(
                         clipBehavior: Clip.hardEdge,
@@ -190,10 +190,7 @@ class _HomePageState extends State<HomePage> {
               return controller.poster[ct].isNotEmpty
                   ? GestureDetector(
                       onTap: () {
-                        controller.loadDetailPoster(controller.poster[ct][index].id);
-                        Get.to(()=>const DetailPosterPage());
-                        // ApiRepository().callDetailPoster(
-                        //     Get.find<Controller>().poster[ct][index].id);
+                        Get.to(()=> DetailPosterPage(id:controller.poster[ct][index].id));
                       },
                       child: Container(
                           clipBehavior: Clip.hardEdge,
@@ -234,9 +231,7 @@ class _HomePageState extends State<HomePage> {
               return Get.find<Controller>().poster[ct].isNotEmpty
                   ? GestureDetector(
                       onTap: () {
-                        controller.loadDetailPoster(
-                            Get.find<Controller>().poster[ct][index].id);
-                        Get.to(()=>const DetailPosterPage());
+                        Get.to(()=> DetailPosterPage(id:Get.find<Controller>().poster[ct][index].id));
                       },
                       child: Container(
                         clipBehavior: Clip.hardEdge,

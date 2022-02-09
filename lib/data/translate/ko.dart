@@ -1,5 +1,7 @@
 Map<String,String> ko={
   //A
+  'average':'평균',
+  'averageStar':'averageStarRating',
 
   //B
 
@@ -8,6 +10,8 @@ Map<String,String> ko={
   'classic':'클래식',
   'community':'컵뮤니티',
   'calendar':'티켓캘린더',
+  'cast/producing':'출연/제작',
+  'company':'회사',
   //D
   'dancing':'무용',
   //E
@@ -32,9 +36,11 @@ Map<String,String> ko={
   'myPage':'myPage',
   //N
 
-  //O
-  'opera':'오페',
+  'noData':'정보없음',
+  //
+  'opera':'오페라',
   //P
+  'producing':'제작',
 
   //Q
 
@@ -42,6 +48,9 @@ Map<String,String> ko={
 
   //S
   'search':'검색',
+  'performanceInformation':'공연 정보',
+  'showMore':'더보기',
+  'showLess':'숨기기',
 
   //T
   'theater':'연극',

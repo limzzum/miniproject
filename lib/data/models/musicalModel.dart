@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 class Poster{
   Poster({
     required this.name,
@@ -92,7 +93,7 @@ class DetailPoster {
     required this.image,
     required this.cat,
     required this.type,
-   // required this.status,
+    required this.status,
     required this.openRun,
     required this.styurls,
     required this.time,
@@ -113,7 +114,7 @@ class DetailPoster {
   String image;
   String cat;
   String type;
- // String status;
+  String status;
   String openRun;
   List<dynamic>? styurls;
   String time;
@@ -122,22 +123,22 @@ class DetailPoster {
     id: json["mt20id"]?? "",
   //  subId: json["subId"],
     name: json["prfnm"]?? "",
-    from: json["prfpdfrom"]?? "",
-    to: json["prfpdto"]?? "",
-    placeName: json["fcltynm"] ?? "placeName",
-    cast: json["prfcast"] ?? "cast",
-    producer: json["prfcrew"]?? "crew",
-    runTime: json["prfruntime"]?? "",
-    ableAge: json["prfage"]?? "",
-    company: json["entrpsnm"]?? "",
-    price: json["pcseguidance"]?? "",
-    image: json["poster"]?? "",
-    cat: json["sty"]?? "sty"?? "",
-    type: json["genrenm"]?? "",
-    //status: json["prfstatus"],
-    openRun: json["openrun"]?? "",
+    from: json["prfpdfrom"]?? "noData".tr,
+    to: json["prfpdto"]?? "noData".tr,
+    placeName: json["fcltynm"] ?? "noData".tr,
+    cast: json["prfcast"] ?? "noData".tr,
+    producer: json["prfcrew"]?? "noData".tr,
+    runTime: json["prfruntime"]?? "noData".tr,
+    ableAge: json["prfage"]?? "noData".tr,
+    company: json["entrpsnm"]?? "noData".tr,
+    price: json["pcseguidance"]?? "noData".tr,
+    image: json["poster"]?? "noData".tr,
+    cat: json["sty"]?? "noData".tr,
+    type: json["genrenm"]?? "noData".tr,
+    status: json["prfstate"]?? "noData".tr,
+    openRun: json["openrun"]?? "noData".tr,
     styurls: styurl.fromJson(json["styurls"]).url?? [], // List<String>.from(json["styurls"].map<String>((x) => x)),
-    time: json["dtguidance"]?? "");
+    time: json["dtguidance"]?? "noData".tr);
 }
 
 class styurl {

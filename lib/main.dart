@@ -9,7 +9,7 @@ import 'package:miniproject/data/translate/ko.dart';
 import 'package:miniproject/screens/loginPage.dart';
 import 'package:miniproject/data/translate/message.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:miniproject/utils/httpOverrides.dart';
+import 'package:miniproject/utils/hidden_text.dart';
 
 import 'appStart.dart';
 import 'bottom_navigation.dart';

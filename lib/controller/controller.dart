@@ -28,6 +28,7 @@ class Controller extends GetxController{
     detailPoster= await ApiRepository().callDetailPoster(id);
     print('detail호출됨');
     update();
+    return 'data load';
   }
 
   loadUserInfo() async{

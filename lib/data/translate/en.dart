@@ -2,6 +2,8 @@ Map<String,String> en={
 
   //A
 
+  'average':'average',
+  'averageStar':'average Star Rating',
   //B
 
   //C
@@ -9,6 +11,8 @@ Map<String,String> en={
   'complex':'complex',
   'community':'community',
   'calendar':'calendar',
+  'cast/producing':'cast/producing',
+  'company':'company',
   //D
   'dancing':'dancing',
   //E
@@ -32,10 +36,11 @@ Map<String,String> en={
   'musical':'musical',
   'myPage':'myPage',
   //N
-
+  'noData':'no Data',
   //O
   'opera':'opera',
   //P
+  'producing':'producing',
 
   //Q
 
@@ -43,6 +48,9 @@ Map<String,String> en={
 
   //S
   'search':'search',
+  'performanceInformation':'performance information',
+  'showMore':'show more',
+  'showLess':'show less',
 
   //T
   'theater':'theater',

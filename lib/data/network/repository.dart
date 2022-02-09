@@ -21,7 +21,7 @@ class ApiRepository{
     print("userinfo"+response.statusCode.toString());
     if(response.statusCode==401){
       await refreshToken();
-      callUserInfo();
+      return callUserInfo();
     }
     var result= jsonDecode(response.body);
     return UserInfo.formJson(result);
