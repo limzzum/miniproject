@@ -38,6 +38,7 @@ dependencies:
   xml2json: ^5.3.2
   table_calendar: ^3.0.3
   syncfusion_flutter_calendar: ^19.4.48
+  flutter_datetime_picker: ^1.5.1
 
 
   # The following adds the Cupertino Icons font to your application.

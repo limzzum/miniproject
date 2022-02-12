@@ -13,11 +13,14 @@ Map<String,String> en={
   'calendar':'calendar',
   'cast/producing':'cast/producing',
   'company':'company',
+  'cast':'cast',
   //D
   'dancing':'dancing',
+  'date':'date',
   //E
 
   //F
+  'friend':'friend',
 
   //G
 
@@ -41,6 +44,7 @@ Map<String,String> en={
   'opera':'opera',
   //P
   'producing':'producing',
+  'price':'price',
 
   //Q
 
@@ -51,9 +55,13 @@ Map<String,String> en={
   'performanceInformation':'performance information',
   'showMore':'show more',
   'showLess':'show less',
+  'save':'save',
+  'seat':'seat',
+
 
   //T
   'theater':'theater',
+  'time':'time',
   //U
 
   //V

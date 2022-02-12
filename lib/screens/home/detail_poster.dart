@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:miniproject/controller/controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:miniproject/screens/home/review_page.dart';
 import 'package:miniproject/utils/hidden_text.dart';
 
 class DetailPosterPage extends StatefulWidget {
@@ -17,6 +18,8 @@ class DetailPosterPage extends StatefulWidget {
 class _DetailPosterPageState extends State<DetailPosterPage> {
   @override
   Widget build(BuildContext context) {
+    print('sizeis'+ '${MediaQuery.of(context).size.width}');
+    print('sizeis'+ '${MediaQuery.of(context).size.height}');
     var controller = Get.put(Controller());
     return FutureBuilder(
         future: controller.loadDetailPoster(widget.id),
@@ -34,7 +37,9 @@ class _DetailPosterPageState extends State<DetailPosterPage> {
           foregroundColor: Colors.black,
           actions: [
             IconButton(onPressed: (){}, icon: const Icon(Icons.star)),
-            IconButton(onPressed: (){}, icon: const Icon(Icons.add)),
+            IconButton(onPressed: (){
+              Get.to(()=> ReviewPage());
+            }, icon: const Icon(Icons.add)),
           ],
         ),
         backgroundColor: Colors.grey,
@@ -185,8 +190,8 @@ class _DetailPosterPageState extends State<DetailPosterPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                       Text(controller.detailPoster.cast),
-                      Text("producing ".tr+controller.detailPoster.producer),
-                      Text("company ".tr + controller.detailPoster.company)
+                      Text("producing".tr+" "+ controller.detailPoster.producer),
+                      Text("company".tr +" "+ controller.detailPoster.company)
                     ],),
                   )
                 ],

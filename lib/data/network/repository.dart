@@ -12,16 +12,15 @@ import 'package:xml2json/xml2json.dart';
 class ApiRepository{
 
   //kakao userInfo
-  callUserInfo() async{
+  callUserInfo(accessToken) async{
     Uri uri = Uri.parse("https://kapi.kakao.com" + "/v2/user/me"
         );
     var response= (await http.get(uri,headers: {"Content-type": "application/x-www-form-urlencoded;charset=utf-8",
-    "Authorization": "Bearer ${Application.preferences.get(KEY.accessToken)}"})) ;
+    "Authorization": "Bearer $accessToken"})) ;
     print("userinfo"+response.body);
     print("userinfo"+response.statusCode.toString());
     if(response.statusCode==401){
-      await refreshToken();
-      return callUserInfo();
+      return callUserInfo(refreshToken());
     }
     var result= jsonDecode(response.body);
     return UserInfo.formJson(result);
@@ -33,11 +32,12 @@ class ApiRepository{
     );
     var response= await http.post(uri,headers: {"Content-type": "application/x-www-form-urlencoded;charset=utf-8",}
     ,body: {"grant_type":"refresh_token" ,"client_id":KEY.clientId,"refresh_token":"${Application.preferences.get(KEY.refreshToken)}"}) ;
-  //  print(response.body);
+    print(response.body);
     var result=jsonDecode(response.body);
     Application.preferences.setString(KEY.accessToken, result["access_token"]);
-    Application.preferences.setString(KEY.refreshToken, result["refresh_token"]);
+   // Application.preferences.setString(KEY.refreshToken, result["refresh_token"]);
     print(response.statusCode);
+    return result["access_token"];
   }
 
   //전체포스터 장르

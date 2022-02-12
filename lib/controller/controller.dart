@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'dart:math';
 
 import 'package:get/get.dart';
@@ -24,6 +26,7 @@ class Controller extends GetxController{
   List<List<Ranking>> ranking=[[],[],[],[],[],[]];
   late DetailPoster detailPoster;
 
+
   loadDetailPoster(id) async{
     detailPoster= await ApiRepository().callDetailPoster(id);
     print('detail호출됨');
@@ -32,7 +35,7 @@ class Controller extends GetxController{
   }
 
   loadUserInfo() async{
-    userInfo= await ApiRepository().callUserInfo();
+    userInfo= await ApiRepository().callUserInfo(Application.preferences.get(KEY.accessToken));
     update();
   }
   checkLogin(){
@@ -62,3 +65,4 @@ class Controller extends GetxController{
   }
 
 }
+

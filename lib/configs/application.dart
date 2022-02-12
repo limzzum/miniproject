@@ -2,6 +2,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Application extends GetxController{
   static late SharedPreferences preferences;
@@ -20,8 +21,8 @@ class Application extends GetxController{
 class KEY{
   static String clientId="9338dac6db9d9162c95333adbcb97200";
   static String serviceKey="178a9353e86d47b0a1d38c9f7a6825c1";
-  static double width=39.69;
-  static double height=85.94;
+  static double width=414.0;
+  static double height=896.0;
   static String accessToken="accessToken";
   static String refreshToken="refreshToken";
   static String musical="AAAB";

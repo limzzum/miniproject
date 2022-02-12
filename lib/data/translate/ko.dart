@@ -12,11 +12,14 @@ Map<String,String> ko={
   'calendar':'티켓캘린더',
   'cast/producing':'출연/제작',
   'company':'회사',
+  'cast':'출연',
   //D
   'dancing':'무용',
+  'date':'날짜',
   //E
 
   //F
+  'friend':'동행',
 
   //G
 
@@ -41,6 +44,7 @@ Map<String,String> ko={
   'opera':'오페라',
   //P
   'producing':'제작',
+  'price':'가격',
 
   //Q
 
@@ -51,9 +55,12 @@ Map<String,String> ko={
   'performanceInformation':'공연 정보',
   'showMore':'더보기',
   'showLess':'숨기기',
+  'save':'저장하기',
+  'seat':'좌석',
 
   //T
   'theater':'연극',
+  'time':'시간',
   //U
 
   //V
