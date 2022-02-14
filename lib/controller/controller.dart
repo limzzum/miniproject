@@ -25,7 +25,13 @@ class Controller extends GetxController{
   List<List<Poster>> poster=[[],[],[],[],[],[]];
   List<List<Ranking>> ranking=[[],[],[],[],[],[]];
   late DetailPoster detailPoster;
+  List<Poster> searchResult=[];
 
+  loadSearchResult(search)async{
+    searchResult= await ApiRepository().SearchPoster(search);
+    update();
+    return 'data load';
+  }
 
   loadDetailPoster(id) async{
     detailPoster= await ApiRepository().callDetailPoster(id);

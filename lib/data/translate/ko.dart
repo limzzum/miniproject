@@ -2,6 +2,7 @@ Map<String,String> ko={
   //A
   'average':'평균',
   'averageStar':'평균 별점',
+  'actor':'배우',
 
   //B
 
@@ -13,6 +14,8 @@ Map<String,String> ko={
   'cast/producing':'출연/제작',
   'company':'회사',
   'cast':'출연',
+  'costume':'의상',
+  'comment/review':'코멘트/리뷰',
   //D
   'dancing':'무용',
   'date':'날짜',
@@ -37,14 +40,17 @@ Map<String,String> ko={
   //M
   'musical':'뮤지컬',
   'myPage':'myPage',
+  'makeUp':'분장',
   //N
-
   'noData':'정보없음',
+  'number':'넘버',
   //
   'opera':'오페라',
   //P
   'producing':'제작',
   'price':'가격',
+  'pairMatch':'페어 조합',
+  'production':'연출',
 
   //Q
 
@@ -57,6 +63,10 @@ Map<String,String> ko={
   'showLess':'숨기기',
   'save':'저장하기',
   'seat':'좌석',
+  'starRating':'별점',
+  'story':'스토리',
+  'sound':'음향',
+  'show':'무대',
 
   //T
   'theater':'연극',
@@ -66,6 +76,7 @@ Map<String,String> ko={
   //V
 
   //W
+  'whatWasGood':'좋았던 점',
 
   //X
 

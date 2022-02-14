@@ -64,6 +64,31 @@ class ApiRepository{
         return [Poster.fromJson(list)];}}
     return nullList;
   }
+  Future<List<Poster>> SearchPoster(search) async{
+    List<Poster> nullList=[];
+
+    Uri uri = Uri.parse(
+        BaseUrl.loadPosterUrl+"&shprfnm=$search");
+    var response = await http.get(uri);
+    XmlDocument result= XmlDocument.parse(response.body);
+
+    var xmltojson= Xml2Json()..parse(result.toXmlString());
+    var json= jsonDecode(xmltojson.toParker());
+
+    if(json.toString()=="{dbs: null}"){
+      return nullList;
+    }
+    var list= json["dbs"]["db"];
+    print(list);
+
+    if(list!=null)
+    {
+      try{return list.map<Poster>((e)=>Poster.fromJson(e)).toList();}
+      catch(e){
+        print("오류발생$e");
+        return [Poster.fromJson(list)];}}
+    return nullList;
+  }
 
   //순위 장르별
   Future<List<Ranking>> callRanking(type) async{

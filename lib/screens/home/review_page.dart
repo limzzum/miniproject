@@ -25,6 +25,9 @@ class _ReviewPageState extends State<ReviewPage> {
     List castList = controller.detailPoster.cast.split(',');
     List priceList = controller.detailPoster.price.split('원,');
 
+    List good=["story".tr,"actor".tr,"pairMatch".tr,"number".tr,"sound".tr,"production".tr,
+    "show".tr,"costume".tr,"makeUp".tr];
+
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -283,6 +286,78 @@ class _ReviewPageState extends State<ReviewPage> {
                                       onSaved: (value) {},
                                     ))
                                   ]),
+                                  SizedBox(
+                                    height: 50.w,
+                                  ),
+                                  Container(
+                                    width: KEY.width.w,
+                                    height: 700.w,
+                                  child:Column(children:[
+                                    Text('starRating'.tr,style: TextStyle(fontSize: 25.sp),),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                    IconButton(onPressed: (){
+                                      _.setStar(1);
+                                    }, icon: _.star>0? Icon(Icons.star,size: 45.w,): Icon(Icons.star_border,size: 45.w)),
+                                    IconButton(onPressed: (){
+                                      _.setStar(2);
+                                    }, icon: _.star>1? Icon(Icons.star,size: 45.w): Icon(Icons.star_border,size: 45.w)),
+                                    IconButton(onPressed: (){
+                                      _.setStar(3);
+                                    }, icon: _.star>2? Icon(Icons.star,size: 45.w): Icon(Icons.star_border,size: 45.w)),
+                                    IconButton(onPressed: (){
+                                      _.setStar(4);
+                                    }, icon: _.star>3? Icon(Icons.star,size: 45.w): Icon(Icons.star_border,size: 45.w)),
+                                    IconButton(onPressed: (){
+                                      _.setStar(5);
+                                    }, icon: _.star>4? Icon(Icons.star,size: 45.w): Icon(Icons.star_border,size: 45.w)),
+                                  ],),
+
+                                  SizedBox(
+                                    height: 20.w,
+                                  ),
+                                  Text("whatWasGood".tr,style: TextStyle(fontSize: 25.w),),
+                                  SizedBox(
+                                    height: 20.w,
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(left: 20.w,right: 20.w),
+                                    height: 200.w,
+                                    child: GridView.count(
+                                      childAspectRatio: 2.2,
+                                      crossAxisSpacing: 40.w,
+                                      mainAxisSpacing: 20.w,
+                                      crossAxisCount: 3,
+                                      children: [
+                                        gridBuildItem(good[0]),
+                                        gridBuildItem(good[1]),
+                                        gridBuildItem(good[2]),
+                                        gridBuildItem(good[3]),
+                                        gridBuildItem(good[4]),
+                                        gridBuildItem(good[5]),
+                                        gridBuildItem(good[6]),
+                                        gridBuildItem(good[7]),
+                                        gridBuildItem(good[8]),
+                                      ],
+                                    ),
+                                  ),
+
+                                    Text('comment/review'.tr),
+                                    Container(
+                                      padding: EdgeInsets.all(20.w),
+                                      height: 250.w,
+                                      decoration: BoxDecoration(
+                                          color: Colors.orangeAccent,
+                                          borderRadius: BorderRadius.circular(15.w)
+                                      ),
+                                      child: TextFormField(
+                                        maxLines: 100,
+                                        decoration: InputDecoration(isCollapsed:true,border: InputBorder.none),
+                                      ),
+                                    )
+                                    ]),),
+
                                 ],
                               ),
                             ),
@@ -359,6 +434,24 @@ class _ReviewPageState extends State<ReviewPage> {
             ),
             borderRadius: BorderRadius.circular(11.w)),
         child: Center(child: child));
+  }
+  gridBuildItem(text){
+
+    return GetBuilder<ReviewController>(
+        builder: (_)=>
+        GestureDetector(
+      onTap: (){
+        _.updateGoodSelected(text);
+      },
+      child: Container(
+        alignment: Alignment.center,
+        decoration:BoxDecoration(
+            color: _.goodSelected.contains(text)?Colors.blue:Colors.grey,
+            borderRadius: BorderRadius.circular(8.w)
+        ),
+        child: Text(text),
+      ),)
+    );
   }
 
   myDatePicker() {

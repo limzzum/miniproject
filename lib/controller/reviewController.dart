@@ -10,11 +10,26 @@ class ReviewController extends GetxController{
   String friend="";
   List<String> castSelected=[];
   String priceSelected="";
+  List<String> goodSelected=[];
+  int star=0;
+  double averageStar=0.0;
+
+
+  setStar(value){
+    star=value;
+    update();
+  }
 
 
   updateCastSelected(index){
     castSelected.contains(index)?
         castSelected.remove(index):castSelected.add(index);
+    update();
+  }
+  updateGoodSelected(index){
+    goodSelected.contains(index)?
+    goodSelected.remove(index):goodSelected.length<3?
+    goodSelected.add(index):Container();
     update();
   }
   updatePriceSelected(select){
