@@ -87,7 +87,7 @@ class _DetailPosterPageState extends State<DetailPosterPage> {
                             ),
 
                             Container(
-                              width: 200.w,
+                            //  width: 200.w,
                               height: 130.w,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,10 +98,10 @@ class _DetailPosterPageState extends State<DetailPosterPage> {
                               Icon(Icons.music_note),Text(controller.detailPoster.type,),
                             ],),
                             Row(children: [
-                              Icon(Icons.music_note),Flexible(child: Text(controller.detailPoster.placeName,maxLines: 2,)),
+                              Icon(Icons.music_note),Flexible(child: Text(controller.detailPoster.placeName,maxLines: 2,overflow: TextOverflow.ellipsis,)),
                             ],),
                             Row(children: [
-                              Icon(Icons.music_note),Flexible(child: Text(controller.detailPoster.from+"~"+controller.detailPoster.to,maxLines: 2,))
+                              Icon(Icons.music_note),Text(controller.detailPoster.from+"~"+controller.detailPoster.to)
                             ],),
                             Row(children: [
                               Icon(Icons.music_note),Text(controller.detailPoster.status)
@@ -157,7 +157,7 @@ class _DetailPosterPageState extends State<DetailPosterPage> {
                     height: 100.w,
                     child: SingleChildScrollView(
                       child:
-                        HiddenText(text: controller.detailPoster.cat.trim())
+                        HiddenText(text: controller.detailPoster.cat.replaceAll('\\n', '').replaceAll('\\r\\', ''))
                       ),
                   ),
                     ],

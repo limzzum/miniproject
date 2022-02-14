@@ -20,7 +20,8 @@ class ApiRepository{
     print("userinfo"+response.body);
     print("userinfo"+response.statusCode.toString());
     if(response.statusCode==401){
-      return callUserInfo(refreshToken());
+      var token=await refreshToken();
+      return callUserInfo(token);
     }
     var result= jsonDecode(response.body);
     return UserInfo.formJson(result);
@@ -100,6 +101,7 @@ class ApiRepository{
     print(json);
     var list= json["dbs"]["db"];
     print(list);
+
     return DetailPoster.fromJson(list);
     // if(list!=null) {
     //   try{

@@ -1,7 +1,7 @@
 Map<String,String> ko={
   //A
   'average':'평균',
-  'averageStar':'averageStarRating',
+  'averageStar':'평균 별점',
 
   //B
 
