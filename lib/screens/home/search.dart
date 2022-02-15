@@ -17,6 +17,7 @@ class Search extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
+    if(query.isNotEmpty){
     return FutureBuilder(
         future: controller.loadSearchResult(query),
         builder: (data, snapshot) {
@@ -58,7 +59,8 @@ class Search extends SearchDelegate {
                                           fit: BoxFit.cover)),
                             ))));
           }
-        });
+        });}
+    return Container();
   }
 
   @override

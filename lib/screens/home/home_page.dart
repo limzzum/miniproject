@@ -33,94 +33,95 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        alignment: Alignment.topCenter,
-        margin: EdgeInsets.only(
-          top: 70.w,
-        ),
-        child: Column(children: [
-          Container(
-              width: 350.w,
-              height: 670.w,
-              child: DefaultTabController(
-                length: 6,
-                child: Column(children: [
-                  TabBar(
-                    onTap: (index) {
-                      print(index);
-                    },
-                    tabs:
-                        //choice.map((e) => Tab(text: Text(e,style: TextStyle(fontSize: 11.sp, color: Colors.black)).toString())).toList(),
+    print(DateTime(2022,01,11));
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Container(
+          alignment: Alignment.topCenter,
+        
+          child: Column(children: [
+            Container(
+                width: 350.w,
+                height: 670.w,
+                child: DefaultTabController(
+                  length: 6,
+                  child: Column(children: [
+                    TabBar(
+                      onTap: (index) {
+                        print(index);
+                      },
+                      tabs:
+                          //choice.map((e) => Tab(text: Text(e,style: TextStyle(fontSize: 11.sp, color: Colors.black)).toString())).toList(),
 
-                        [
-                      Text("musical".tr + " |",
-                          style:
-                              TextStyle(fontSize: 11.sp, color: Colors.black)),
-                      Text("theater".tr + " |",
-                          style:
-                              TextStyle(fontSize: 11.sp, color: Colors.black)),
-                      Text("classic".tr + " |",
-                          style:
-                              TextStyle(fontSize: 11.sp, color: Colors.black)),
-                      Text("opera".tr + " |",
-                          style:
-                              TextStyle(fontSize: 11.sp, color: Colors.black)),
-                      Text("korean tranditional music".tr + " |",
-                          style:
-                              TextStyle(fontSize: 11.sp, color: Colors.black)),
-                      Text("complex".tr,
-                          style:
-                              TextStyle(fontSize: 11.sp, color: Colors.black)),
-                    ],
-                    indicatorColor: Colors.black,
-                    labelPadding: EdgeInsets.all(0.w),
-                  ),
-                  SizedBox(
-                    height: 20.w,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      showSearch(context: context, delegate: Search());
-                    },
-                    child: Container(
-                        width: 350.w,
-                        height: 50.w,
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 2),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(5))),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(right: 10.w),
-                                width: Get.locale == Locale('ko') ? 50.w : 70.w,
-                                height: 30.w,
-                                decoration: BoxDecoration(
-                                    border: Border.all(width: 2),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(5))),
-                                child: Center(
-                                    child: Text(
-                                  'search'.tr,
-                                )),
-                              )
-                            ])),
-                  ),
-                  Expanded(child: GetBuilder<Controller>(builder: (_) {
-                    return TabBarView(children: [
-                      list(0),
-                      list(1),
-                      list(2),
-                      list(3),
-                      list(4),
-                      list(5)
-                    ]);
-                  })),
-                ]),
-              )),
-        ]),
+                          [
+                        Text("musical".tr + " |",
+                            style:
+                                TextStyle(fontSize: 11.sp, color: Colors.black)),
+                        Text("theater".tr + " |",
+                            style:
+                                TextStyle(fontSize: 11.sp, color: Colors.black)),
+                        Text("classic".tr + " |",
+                            style:
+                                TextStyle(fontSize: 11.sp, color: Colors.black)),
+                        Text("opera".tr + " |",
+                            style:
+                                TextStyle(fontSize: 11.sp, color: Colors.black)),
+                        Text("korean tranditional music".tr + " |",
+                            style:
+                                TextStyle(fontSize: 11.sp, color: Colors.black)),
+                        Text("complex".tr,
+                            style:
+                                TextStyle(fontSize: 11.sp, color: Colors.black)),
+                      ],
+                      indicatorColor: Colors.black,
+                      labelPadding: EdgeInsets.all(0.w),
+                    ),
+                    SizedBox(
+                      height: 20.w,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        showSearch(context: context, delegate: Search());
+                      },
+                      child: Container(
+                          width: 350.w,
+                          height: 50.w,
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 2),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(5))),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(right: 10.w),
+                                  width: Get.locale == Locale('ko') ? 50.w : 70.w,
+                                  height: 30.w,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(width: 2),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(5))),
+                                  child: Center(
+                                      child: Text(
+                                    'search'.tr,
+                                  )),
+                                )
+                              ])),
+                    ),
+                    Expanded(child: GetBuilder<Controller>(builder: (_) {
+                      return TabBarView(children: [
+                        list(0),
+                        list(1),
+                        list(2),
+                        list(3),
+                        list(4),
+                        list(5)
+                      ]);
+                    })),
+                  ]),
+                )),
+          ]),
+        ),
       ),
     );
   }
