@@ -483,7 +483,7 @@ class _ReviewPageState extends State<ReviewPage> {
       child: Container(
         alignment: Alignment.center,
         decoration:BoxDecoration(
-            color: _.goodSelected.contains(text)?Colors.blue:Colors.grey,
+            color: _.goodSelected.contains(text)?Colors.orangeAccent:Colors.grey,
             borderRadius: BorderRadius.circular(8.w)
         ),
         child: Text(text),

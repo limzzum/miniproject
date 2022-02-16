@@ -105,8 +105,10 @@
 //   bool isAllDay;
 // }
 
-
+import 'dart:async';
 import 'dart:collection';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:miniproject/data/models/musicalModel.dart';
@@ -125,6 +127,7 @@ class _CalendarPageState extends State<CalendarPage> {
   late final PageController _pageController;
   late final ValueNotifier<List<Event>> _selectedEvents;
   final ValueNotifier<DateTime> _focusedDay = ValueNotifier(DateTime.now());
+
   // final Set<DateTime> _selectedDays = LinkedHashSet<DateTime>(
   //   equals: isSameDay,
   //   hashCode: getHashCode,
@@ -171,7 +174,7 @@ class _CalendarPageState extends State<CalendarPage> {
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     setState(() {
       _focusedDay.value = focusedDay;
-      this._selectedDay=selectedDay;
+      this._selectedDay = selectedDay;
       _rangeStart = null;
       _rangeEnd = null;
       _rangeSelectionMode = RangeSelectionMode.toggledOff;
@@ -198,125 +201,171 @@ class _CalendarPageState extends State<CalendarPage> {
     }
   }
 
+  myDatePicker(context) {
+    return DatePicker.showDatePicker(context,
+        minTime: kFirstDay, maxTime: kLastDay, onConfirm: (date) {
+      setState(() {
+        _focusedDay.value = date;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 40.w,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        shadowColor: Colors.transparent,
-        title: Text('TableCalendar - Complex'),
-      ),
-      body: Column(
-        children: [
-          // ValueListenableBuilder<DateTime>(
-          //   valueListenable: _focusedDay,
-          //   builder: (context, value, _) {
-          //     // return _CalendarHeader(
-          //     //   focusedDay: value,
-          //     //   clearButtonVisible: false,//canClearSelection,
-          //     //   onTodayButtonTap: () {
-          //     //     setState(() => _focusedDay.value = DateTime.now());
-          //     //   },
-          //     //   onClearButtonTap: () {
-          //     //     setState(() {
-          //     //       _rangeStart = null;
-          //     //       _rangeEnd = null;
-          //     //       _selectedEvents.value = [];
-          //     //     });
-          //     //   },
-          //     //   onLeftArrowTap: () {
-          //     //     _pageController.previousPage(
-          //     //       duration: Duration(milliseconds: 300),
-          //     //       curve: Curves.easeOut,
-          //     //     );
-          //     //   },
-          //     //   onRightArrowTap: () {
-          //     //     _pageController.nextPage(
-          //     //       duration: Duration(milliseconds: 300),
-          //     //       curve: Curves.easeOut,
-          //     //     );
-          //     //   },
-          //     // );
-          //   },
-          // ),
-          TableCalendar<Event>(
-            firstDay: kFirstDay,
-            lastDay: kLastDay,
-            focusedDay: _focusedDay.value,
-            headerVisible: false,
-            //  selectedDayPredicate: (day) => _selectedDays.contains(day),
-           // currentDay: _selectedDay,
-           //  rangeStartDay: _rangeStart,
-           //  rangeEndDay: _rangeEnd,
-            calendarFormat: _calendarFormat,
-            rangeSelectionMode: _rangeSelectionMode,
-            eventLoader: _getEventsForDay,
-            holidayPredicate: (day) {
-              // Every 20th day of the month will be treated as a holiday
-              return day.day == 20;
-            },
-            onDaySelected: _onDaySelected,
-            onRangeSelected: _onRangeSelected,
-            onCalendarCreated: (controller) => _pageController = controller,
-            onPageChanged: (focusedDay) => _focusedDay.value = focusedDay,
-            onFormatChanged: (format) {
-              if (_calendarFormat != format) {
-                setState(() => _calendarFormat = format);
-              }
-            },
+    return SafeArea(
+      child: Scaffold(
+        // appBar: AppBar(
+        //   toolbarHeight: 40.w,
+        //   backgroundColor: Colors.white,
+        //   foregroundColor: Colors.black,
+        //   shadowColor: Colors.transparent,
+        //   title: Text('TableCalendar - Complex'),
+        //),
+        body: Column(
+          children: [
+            ValueListenableBuilder<DateTime>(
+                valueListenable: _focusedDay,
+                builder: (context, value, _) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 16.w),
+                        GestureDetector(
+                          onTap: () {
+                            myDatePicker(context);
+                          },
+                          child: SizedBox(
+                            width: 150.w,
+                            child: Text(
+                              DateFormat.yMMM().format(_focusedDay.value),
+                              style: TextStyle(fontSize: 26.w),
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        IconButton(
+                          icon: Icon(Icons.chevron_left),
+                          onPressed: () {
 
+                              _pageController.previousPage(
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.easeOut,
+                              );
 
-            rowHeight: 130.w,
-            daysOfWeekStyle: DaysOfWeekStyle(
-
-            ),
-            calendarStyle: const CalendarStyle(
-           //   markerSizeScale: 5,
-              canMarkersOverflow: false,
-              markersMaxCount: 1,
-              markerSize: 130,
-              markerDecoration: BoxDecoration(
-              // shape: BoxShape.rectangle,
-                color: Colors.orangeAccent,
-                image: DecorationImage(
-                  fit:BoxFit.cover,
-                  image: NetworkImage("http://www.kopis.or.kr/upload/pfmPoster/PF_PF185387_220103_112228.jpg")
-                )
-              )
-
-            ),
-
-          ),
-          const SizedBox(height: 8.0),
-          Expanded(
-            child: ValueListenableBuilder<List<Event>>(
-              valueListenable: _selectedEvents,
-              builder: (context, value, _) {
-                return ListView.builder(
-                  itemCount: value.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 12.0,
-                        vertical: 4.0,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: ListTile(
-                        onTap: () => print('${value[index]}'),
-                        title: Text('${value[index]}'),
-                      ),
-                    );
-                  },
-                );
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.chevron_right),
+                          onPressed: () {
+                            _pageController.nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.easeOut,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+            // ValueListenableBuilder<DateTime>(
+            //   valueListenable: _focusedDay,
+            //   builder: (context, value, _) {
+            //     return _CalendarHeader (
+            //       focusedDay: value,
+            //       clearButtonVisible: false,//canClearSelection,
+            //       onTodayButtonTap: () {
+            //
+            //       },
+            //       onClearButtonTap: () {
+            //         setState(() {
+            //           _rangeStart = null;
+            //           _rangeEnd = null;
+            //           _selectedEvents.value = [];
+            //         });
+            //       },
+            //       onLeftArrowTap: () {
+            //         _pageController.previousPage(
+            //           duration: Duration(milliseconds: 300),
+            //           curve: Curves.easeOut,
+            //         );
+            //       },
+            //       onRightArrowTap: () {
+            //         _pageController.nextPage(
+            //           duration: Duration(milliseconds: 300),
+            //           curve: Curves.easeOut,
+            //         );
+            //       },
+            //     );
+            //   },
+            // ),
+            TableCalendar<Event>(
+              firstDay: kFirstDay,
+              lastDay: kLastDay,
+              focusedDay: _focusedDay.value,
+              headerVisible: false,
+              //  selectedDayPredicate: (day) => _selectedDays.contains(day),
+              // currentDay: _selectedDay,
+              //  rangeStartDay: _rangeStart,
+              //  rangeEndDay: _rangeEnd,
+              calendarFormat: _calendarFormat,
+              rangeSelectionMode: _rangeSelectionMode,
+              eventLoader: _getEventsForDay,
+              holidayPredicate: (day) {
+                // Every 20th day of the month will be treated as a holiday
+                return false; // day.day == 20;
               },
+              onDaySelected: _onDaySelected,
+              onRangeSelected: _onRangeSelected,
+              onCalendarCreated: (controller) => _pageController = controller,
+              onPageChanged: (focusedDay) => _selectedEvents.value=[],//_focusedDay.value = focusedDay,
+              onFormatChanged: (format) {
+                if (_calendarFormat != format) {
+                  setState(() => _calendarFormat = format);
+                }
+              },
+              rowHeight: 100.w,
+              calendarStyle: CalendarStyle(
+                  //   markerSizeScale: 5,
+                  canMarkersOverflow: false,
+                  markersMaxCount: 1,
+                  markerSize: 100.w,
+                  markerDecoration: BoxDecoration(
+                      // shape: BoxShape.rectangle,
+                      image: DecorationImage(
+                          //  fit:BoxFit.scaleDown,
+                          image: NetworkImage(
+                              "http://www.kopis.or.kr/upload/pfmPoster/PF_PF184635_211209_115824.gif")))),
             ),
-          ),
-        ],
+            const SizedBox(height: 8.0),
+            Expanded(
+              child: ValueListenableBuilder<List<Event>>(
+                valueListenable: _selectedEvents,
+                builder: (context, value, _) {
+                  return ListView.builder(
+                    itemCount: value.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 12.0,
+                          vertical: 4.0,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: ListTile(
+                          onTap: () => print('${value[index]}'),
+                          title: Text('${value[index]}'),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -326,11 +375,11 @@ class _CalendarHeader extends StatelessWidget {
   final DateTime focusedDay;
   final VoidCallback onLeftArrowTap;
   final VoidCallback onRightArrowTap;
-  final VoidCallback onTodayButtonTap;
+  CallbackAction onTodayButtonTap;
   final VoidCallback onClearButtonTap;
   final bool clearButtonVisible;
 
-  const _CalendarHeader({
+  _CalendarHeader({
     Key? key,
     required this.focusedDay,
     required this.onLeftArrowTap,
@@ -348,19 +397,24 @@ class _CalendarHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          const SizedBox(width: 16.0),
-          SizedBox(
-            width: 120.0,
-            child: Text(
-              headerText,
-              style: TextStyle(fontSize: 26.0),
+          SizedBox(width: 16.w),
+          GestureDetector(
+            onTap: () {
+              onTodayButtonTap;
+            },
+            child: SizedBox(
+              width: 150.w,
+              child: Text(
+                headerText,
+                style: TextStyle(fontSize: 26.w),
+              ),
             ),
           ),
-          IconButton(
-            icon: Icon(Icons.calendar_today, size: 20.0),
-            visualDensity: VisualDensity.compact,
-            onPressed: onTodayButtonTap,
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.calendar_today, size: 20.0),
+          //   visualDensity: VisualDensity.compact,
+          //   onPressed: onTodayButtonTap,
+          // ),
           if (clearButtonVisible)
             IconButton(
               icon: Icon(Icons.clear, size: 20.0),
