@@ -16,14 +16,17 @@ Map<String,String> en={
   'company':'company',
   'cast':'cast',
   'costume':'costume',
-  'comment/review':'Comment/Review',
+  'comment':'comment',
   //D
   'dancing':'dancing',
   'date':'date',
   //E
+  'entireWatch':'entire watch',
 
   //F
   'friend':'friend',
+  'following':'following',
+  'follower':'follower',
 
   //G
 
@@ -37,6 +40,8 @@ Map<String,String> en={
   //K
   'korean tranditional music':'Korean tranditional music',
   //L
+  'like':'like',
+
 
   //M
   'musical':'musical',
@@ -45,6 +50,7 @@ Map<String,String> en={
   //N
   'noData':'no Data',
   'number':'number',
+  'nickName':'nickname',
   //O
   'opera':'opera',
   //P
@@ -52,11 +58,12 @@ Map<String,String> en={
   'price':'price',
   'pairMatch':'pairMatch',
   'production':'production',
+  'profileEdit':'profile edit',
 
   //Q
 
   //R
-
+  'review':'review',
   //S
   'search':'search',
   'performanceInformation':'performance information',

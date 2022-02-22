@@ -15,14 +15,17 @@ Map<String,String> ko={
   'company':'회사',
   'cast':'출연',
   'costume':'의상',
-  'comment/review':'코멘트/리뷰',
+  'comment':'코멘트',
   //D
   'dancing':'무용',
   'date':'날짜',
   //E
+  'entireWatch':'총 관람',
 
   //F
   'friend':'동행',
+  'following':'팔로잉',
+  'follower':'팔로워',
 
   //G
 
@@ -36,6 +39,7 @@ Map<String,String> ko={
   //K
   'korean tranditional music':'국',
   //L
+  'like':'좋아요',
 
   //M
   'musical':'뮤지컬',
@@ -44,6 +48,7 @@ Map<String,String> ko={
   //N
   'noData':'정보없음',
   'number':'넘버',
+  'nickName':'닉네임',
   //
   'opera':'오페라',
   //P
@@ -51,10 +56,12 @@ Map<String,String> ko={
   'price':'가격',
   'pairMatch':'페어 조합',
   'production':'연출',
+  'profileEdit':'프로필 수정',
 
   //Q
 
   //R
+  'review':'리뷰',
 
   //S
   'search':'검색',

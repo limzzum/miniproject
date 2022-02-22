@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:miniproject/constants/icon_constant.dart';
+import 'package:miniproject/constants/image_constant.dart';
 import 'package:miniproject/screens/calendar/calendar2.dart';
 import 'package:miniproject/screens/calendar/calendar_page.dart';
 import 'package:miniproject/screens/community/community_page.dart';
@@ -35,7 +37,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: const Icon(Icons.ac_unit),label: 'community'.tr),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'community'.tr),
           BottomNavigationBarItem(icon: const Icon(Icons.access_alarm),label: "calendar".tr),
           BottomNavigationBarItem(icon: const Icon(Icons.ac_unit),label:'home'.tr),
           BottomNavigationBarItem(icon: const Icon(Icons.access_alarm),label: "myPage".tr)
@@ -45,7 +47,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           controller.changeIndex(index);
        },
         currentIndex: controller.currentIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.orangeAccent,
         unselectedItemColor: Colors.black,
       ),
     ));
