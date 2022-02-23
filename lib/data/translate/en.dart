@@ -5,6 +5,7 @@ Map<String,String> en={
   'average':'average',
   'averageStar':'average Star Rating',
   'actor':'actor',
+  'awardsWinning':'awards-Winning',
   //B
 
   //C
@@ -17,6 +18,7 @@ Map<String,String> en={
   'cast':'cast',
   'costume':'costume',
   'comment':'comment',
+  'comingSoon':'coming soon',
   //D
   'dancing':'dancing',
   'date':'date',
@@ -38,7 +40,7 @@ Map<String,String> en={
   //J
 
   //K
-  'korean tranditional music':'Korean tranditional music',
+  'koreanMusic':'Korean music',
   //L
   'like':'like',
 
@@ -59,11 +61,12 @@ Map<String,String> en={
   'pairMatch':'pairMatch',
   'production':'production',
   'profileEdit':'profile edit',
-
+  'performing':'performing',
   //Q
 
   //R
   'review':'review',
+  'ranking':'ranking',
   //S
   'search':'search',
   'performanceInformation':'performance information',
@@ -80,6 +83,8 @@ Map<String,String> en={
   //T
   'theater':'theater',
   'time':'time',
+  'today':'today',
+  'ticketing':'ticketing',
   //U
 
   //V

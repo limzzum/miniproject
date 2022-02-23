@@ -128,13 +128,6 @@ class ApiRepository{
     print(list);
 
     return DetailPoster.fromJson(list);
-    // if(list!=null) {
-    //   try{
-    //     return list.map<Ranking>((e) => Ranking.fromJson(e)).toList();}
-    //   catch(e){
-    //     return [Ranking.fromJson(list)];
-    //   }
-    // }
   }
 
 

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:miniproject/configs/application.dart';
-import 'package:miniproject/constants/image_constant.dart';
 import 'package:miniproject/controller/controller.dart';
-import 'package:miniproject/data/models/userModel.dart';
-import 'package:miniproject/data/network/repository.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:miniproject/screens/mypage/settings.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -34,7 +32,9 @@ class _MyPageState extends State<MyPage> {
           actions: [
             IconButton(
               padding: EdgeInsets.only(right: 20.w),
-                onPressed: (){}, icon: Icon(Icons.settings))],),
+                onPressed: (){
+                Get.to(()=>SettingPage());
+                }, icon: Icon(Icons.settings))],),
           body: Container(
             width: KEY.width.w,
             height: KEY.height.w,

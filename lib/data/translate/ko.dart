@@ -3,6 +3,7 @@ Map<String,String> ko={
   'average':'평균',
   'averageStar':'평균 별점',
   'actor':'배우',
+  'awardsWinning':'수상작',
 
   //B
 
@@ -16,6 +17,7 @@ Map<String,String> ko={
   'cast':'출연',
   'costume':'의상',
   'comment':'코멘트',
+  'comingSoon':'공연 예정',
   //D
   'dancing':'무용',
   'date':'날짜',
@@ -37,7 +39,7 @@ Map<String,String> ko={
   //J
 
   //K
-  'korean tranditional music':'국',
+  'koreanMusic':'국악',
   //L
   'like':'좋아요',
 
@@ -57,11 +59,13 @@ Map<String,String> ko={
   'pairMatch':'페어 조합',
   'production':'연출',
   'profileEdit':'프로필 수정',
+  'performing':'공연중',
 
   //Q
 
   //R
   'review':'리뷰',
+  'ranking':'순',
 
   //S
   'search':'검색',
@@ -78,6 +82,8 @@ Map<String,String> ko={
   //T
   'theater':'연극',
   'time':'시간',
+  'today':'현재',
+  'ticketing':'예매',
   //U
 
   //V

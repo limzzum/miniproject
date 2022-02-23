@@ -11,6 +11,7 @@ import 'package:miniproject/data/models/musicalModel.dart';
 import 'package:miniproject/data/network/repository.dart';
 import 'package:miniproject/screens/home/detail_poster.dart';
 import 'package:miniproject/screens/home/search.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,167 +34,175 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(DateTime(2022,01,11));
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Container(
-          alignment: Alignment.topCenter,
-        
-          child: Column(children: [
-            Container(
-                width: 350.w,
-                height: 670.w,
-                child: DefaultTabController(
-                  length: 6,
-                  child: Column(children: [
-                    TabBar(
-                      onTap: (index) {
-                        print(index);
-                      },
-                      tabs:
-                          //choice.map((e) => Tab(text: Text(e,style: TextStyle(fontSize: 11.sp, color: Colors.black)).toString())).toList(),
 
-                          [
-                        Text("musical".tr + " |",
-                            style:
-                                TextStyle(fontSize: 11.sp, color: Colors.black)),
-                        Text("theater".tr + " |",
-                            style:
-                                TextStyle(fontSize: 11.sp, color: Colors.black)),
-                        Text("classic".tr + " |",
-                            style:
-                                TextStyle(fontSize: 11.sp, color: Colors.black)),
-                        Text("opera".tr + " |",
-                            style:
-                                TextStyle(fontSize: 11.sp, color: Colors.black)),
-                        Text("korean tranditional music".tr + " |",
-                            style:
-                                TextStyle(fontSize: 11.sp, color: Colors.black)),
-                        Text("complex".tr,
-                            style:
-                                TextStyle(fontSize: 11.sp, color: Colors.black)),
-                      ],
-                      indicatorColor: Colors.black,
-                      labelPadding: EdgeInsets.all(0.w),
-                    ),
-                    SizedBox(
-                      height: 20.w,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        showSearch(context: context, delegate: Search());
-                      },
-                      child: Container(
-                          width: 350.w,
-                          height: 50.w,
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 2),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(5))),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(right: 10.w),
-                                  width: Get.locale == Locale('ko') ? 50.w : 70.w,
-                                  height: 30.w,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(width: 2),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(5))),
-                                  child: Center(
-                                      child: Text(
-                                    'search'.tr,
-                                  )),
-                                )
-                              ])),
-                    ),
-                    Expanded(child: GetBuilder<Controller>(builder: (_) {
-                      return TabBarView(children: [
-                        list(0),
-                        list(1),
-                        list(2),
-                        list(3),
-                        list(4),
-                        list(5)
-                      ]);
-                    })),
-                  ]),
-                )),
-          ]),
-        ),
+      child: Container(
+        padding: EdgeInsets.only(top: 20.w),
+        alignment: Alignment.topCenter,
+
+        child: Column(children: [
+          Container(
+              width: 350.w,
+              height: 670.w,
+              child: DefaultTabController(
+                length: 6,
+                child: Column(children: [
+
+                  GestureDetector(
+                    onTap: () {
+                      showSearch(context: context, delegate: Search());
+                    },
+                    child: Container(
+                        padding: EdgeInsets.only(left: 10.w),
+                        width: 350.w,
+                        height: 40.w,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          //  border: Border.all(width: 2),
+                            borderRadius:
+                            const BorderRadius.all(Radius.circular(5))),
+                        child: Row(
+                          //  mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Icon(Icons.search)
+                              // Container(
+                              //   margin: EdgeInsets.only(right: 10.w),
+                              //   width: Get.locale == Locale('ko') ? 50.w : 70.w,
+                              //   height: 30.w,
+                              //   decoration: BoxDecoration(
+                              //       border: Border.all(width: 2),
+                              //       borderRadius: const BorderRadius.all(
+                              //           Radius.circular(5))),
+                              //   child: Center(
+                              //       child: Text(
+                              //         'search'.tr,
+                              //       )),
+                              // )
+                            ])),
+                  ),
+                  SizedBox(
+                    height: 17.w,
+                  ),
+                  TabBar(
+                    onTap: (index) {
+                      print(index);
+                    },
+                    tabs:
+                        //choice.map((e) => Tab(text: Text(e,style: TextStyle(fontSize: 11.sp, color: Colors.black)).toString())).toList(),
+
+                        [
+                      Container(
+                        //width: 50.w,
+                        height:30.w,
+                        child: FittedBox(
+                          fit: BoxFit.fill,
+                          child: Text("musical".tr ,
+                              style:
+                                  TextStyle(fontWeight: FontWeight.w900,)),
+                        ),
+                      ),
+                      Container(
+                       // width: 50.w,
+                        height:30.w,
+                        child: FittedBox(
+                          fit: BoxFit.fill,
+                          child: Text("theater".tr,
+                              style:
+                                  TextStyle( fontWeight: FontWeight.w900,)),
+                        ),
+                      ),
+                      Container(
+                      //  width: 50.w,
+                        height:30.w,
+                        child: FittedBox(
+                          fit: BoxFit.fill,
+                          child: Text("classic".tr,
+                              style:
+                                  TextStyle( fontWeight: FontWeight.w900,)),
+                        ),
+                      ),
+                      Container(
+                     //   width: 50.w,
+                        height:30.w,
+                        child: FittedBox(
+                          fit: BoxFit.fill,
+                          child: Text("opera".tr ,
+                              style:
+                                  TextStyle(fontWeight: FontWeight.w900, )),
+                        ),
+                      ),
+                      Container(
+                        //width: 50.w,
+                        height:30.w,
+                        child: FittedBox(
+                          fit: BoxFit.fill,
+                          child: Text("koreanMusic".tr ,
+                              style:
+                                  TextStyle( fontWeight: FontWeight.w900,overflow: TextOverflow.ellipsis )),
+                        ),
+                      ),
+                      Container(
+                       // width: 50.w,
+                        height: 30.w,
+                        child: FittedBox(
+                          fit: BoxFit.fill,
+                          child: Text("complex".tr,
+                              style:
+                                  TextStyle( fontWeight: FontWeight.w900, )),
+                        ),
+                      )//color: Colors.black)),
+                    ],
+                    unselectedLabelColor: Colors.grey,
+                    labelColor: Colors.black,
+                    indicatorColor: Colors.black,
+                    labelPadding: EdgeInsets.all(4.w),
+                  ),
+
+                  Expanded(child: GetBuilder<Controller>(builder: (_) {
+                    return TabBarView(children: [
+                      list(0),
+                      list(1),
+                      list(2),
+                      list(3),
+                      list(4),
+                      list(5)
+                    ]);
+                  })),
+                ]),
+              )),
+        ]),
       ),
     );
   }
 
   list(ct) {
     var controller = Get.find<Controller>();
-    return Column(children: [
-      SizedBox(
-        height: 20.w,
-      ),
-      const Align(
-          alignment: Alignment.topLeft,
-          child: Text("#예매순위", style: TextStyle(fontWeight: FontWeight.bold))),
-      Container(
-        width: 400.w,
-        height: 130.w,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: controller.ranking[ct].length, //.length,
-            itemBuilder: (context, index) {
-              return controller.ranking[ct].isNotEmpty
-                  ? GestureDetector(
-                      onTap: () {
-                        // controller.loadDetailPoster(
-                        //     Get.find<Controller>().ranking[ct][index].id);
-                        Get.to(()=> DetailPosterPage(id:controller.ranking[ct][index].id));
-                      },
-                      child: Container(
-                        clipBehavior: Clip.hardEdge,
-                        margin: EdgeInsets.only(right: 20.w),
-                        width: 100.w,
-                        height: 130.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.w),
-                        ),
-                        child: controller
-                                .ranking[ct][index]
-                                .image
-                                .contains('http')
-                            ? Image.network(
-                                controller.ranking[ct][index].image,
-                                fit: BoxFit.cover)
-                            : Image.network(
-                                "http://www.kopis.or.kr" +
-                                   controller
-                                        .ranking[ct][index]
-                                        .image,
-                                fit: BoxFit.cover),
-                      ),
-                    )
-                  : Container();
-            }),
-      ),
-      SizedBox(
-        height: 20.w,
-      ),
-      const Align(
-          alignment: Alignment.topLeft,
-          child: Text("#포스터", style: TextStyle(fontWeight: FontWeight.bold))),
-      Container(
-        width: 400.w,
-        height: 130.w,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: controller.poster[ct].length,
-            itemBuilder: (context, index) {
-              return controller.poster[ct].isNotEmpty
-                  ? GestureDetector(
-                      onTap: () {
-                        Get.to(()=> DetailPosterPage(id:controller.poster[ct][index].id));
-                      },
-                      child: Container(
+    return SingleChildScrollView(
+      child: Column(children: [
+        SizedBox(
+          height: 20.w,
+        ),
+        Align(
+            alignment: Alignment.topLeft,
+            child: Text("today".tr.toUpperCase()+" "+"ticketing".tr.toUpperCase()+" "+"ranking".tr.toUpperCase(), style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20.w))),
+        SizedBox(
+          height: 15.w,
+        ),
+        Container(
+          width: 400.w,
+          height: 130.w,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: controller.ranking[ct].length, //.length,
+              itemBuilder: (context, index) {
+                return controller.ranking[ct].isNotEmpty
+                    ? GestureDetector(
+                        onTap: () {
+                          // controller.loadDetailPoster(
+                          //     Get.find<Controller>().ranking[ct][index].id);
+                          Get.to(()=> DetailPosterPage(id:controller.ranking[ct][index].id));
+                        },
+                        child: Container(
                           clipBehavior: Clip.hardEdge,
                           margin: EdgeInsets.only(right: 20.w),
                           width: 100.w,
@@ -201,59 +210,149 @@ class _HomePageState extends State<HomePage> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5.w),
                           ),
-                          child: Get.find<Controller>()
-                                  .poster[ct][index]
+                          child: controller
+                                  .ranking[ct][index]
                                   .image
                                   .contains('http')
                               ? Image.network(
-                                  controller.poster[ct][index].image,
+                                  controller.ranking[ct][index].image,
                                   fit: BoxFit.cover)
                               : Image.network(
                                   "http://www.kopis.or.kr" +
-                                      controller.poster[ct][index].image,
-                                  fit: BoxFit.cover)),
-                    )
-                  : Container();
-            }),
-      ),
-      SizedBox(
-        height: 20.w,
-      ),
-      const Align(
-          alignment: Alignment.topLeft,
-          child: Text("#포스", style: TextStyle(fontWeight: FontWeight.bold))),
-      Container(
-        width: 400.w,
-        height: 130.w,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: Get.find<Controller>().poster[ct].length,
-            itemBuilder: (context, index) {
-              return Get.find<Controller>().poster[ct].isNotEmpty
-                  ? GestureDetector(
-                      onTap: () {
-                        Get.to(()=> DetailPosterPage(id:Get.find<Controller>().poster[ct][index].id));
-                      },
-                      child: Container(
-                        clipBehavior: Clip.hardEdge,
-                        margin: EdgeInsets.only(right: 20.w),
-                        width: 100.w,
-                        height: 130.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.w),
+                                     controller
+                                          .ranking[ct][index]
+                                          .image,
+                                  fit: BoxFit.cover),
                         ),
-                        child: Image.network(
-                          Get.find<Controller>().poster[ct][index].image,
-                          fit: BoxFit.cover,
+                      )
+                    : Container();
+              }),
+        ),
+        SizedBox(
+          height: 40.w,
+        ),
+        Align(
+            alignment: Alignment.topLeft,
+            child: Text("awardsWinning".tr.toUpperCase(), style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20.w))),
+        SizedBox(
+          height: 15.w,
+        ),
+        Container(
+          width: 400.w,
+          height: 130.w,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: controller.poster[ct].length,
+              itemBuilder: (context, index) {
+                return controller.poster[ct].isNotEmpty
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.to(()=> DetailPosterPage(id:controller.poster[ct][index].id));
+                        },
+                        child: Container(
+                            clipBehavior: Clip.hardEdge,
+                            margin: EdgeInsets.only(right: 20.w),
+                            width: 100.w,
+                            height: 130.w,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.w),
+                            ),
+                            child: Get.find<Controller>()
+                                    .poster[ct][index]
+                                    .image
+                                    .contains('http')
+                                ? Image.network(
+                                    controller.poster[ct][index].image,
+                                    fit: BoxFit.cover)
+                                : Image.network(
+                                    "http://www.kopis.or.kr" +
+                                        controller.poster[ct][index].image,
+                                    fit: BoxFit.cover)),
+                      )
+                    : Container();
+              }),
+        ),
+        SizedBox(
+          height: 40.w,
+        ),
+         Align(
+            alignment: Alignment.topLeft,
+            child: Text("comingSoon".tr.toUpperCase(), style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20.w))),
+        SizedBox(
+          height: 15.w,
+        ),
+        Container(
+          width: 400.w,
+          height: 130.w,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: Get.find<Controller>().poster[ct].length,
+              itemBuilder: (context, index) {
+                return Get.find<Controller>().poster[ct].isNotEmpty
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.to(()=> DetailPosterPage(id:Get.find<Controller>().poster[ct][index].id));
+                        },
+                        child: Container(
+                          clipBehavior: Clip.hardEdge,
+                          margin: EdgeInsets.only(right: 20.w),
+                          width: 100.w,
+                          height: 130.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5.w),
+                          ),
+                          child: Image.network(
+                            Get.find<Controller>().poster[ct][index].image,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                    )
-                  : Container();
-            }),
-      ),
-      SizedBox(
-        height: 20.w,
-      ),
-    ]);
+                      )
+                    : Container();
+              }),
+        ),
+        SizedBox(
+          height: 40.w,
+        ),
+
+        Align(
+            alignment: Alignment.topLeft,
+            child: Text("performing".tr, style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20.w))),
+        SizedBox(
+          height: 15.w,
+        ),
+        Container(
+          width: 400.w,
+          height: 130.w,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: Get.find<Controller>().poster[ct].length,
+              itemBuilder: (context, index) {
+                return Get.find<Controller>().poster[ct].isNotEmpty
+                    ? GestureDetector(
+                  onTap: () {
+                    Get.to(()=> DetailPosterPage(id:Get.find<Controller>().poster[ct][index].id));
+                  },
+                  child: Container(
+                    clipBehavior: Clip.hardEdge,
+                    margin: EdgeInsets.only(right: 20.w),
+                    width: 100.w,
+                    height: 130.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.w),
+                    ),
+                    child: Image.network(
+                      Get.find<Controller>().poster[ct][index].image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+                    : Container();
+              }),
+        ),
+        SizedBox(
+          height: 40.w,
+        ),
+      ]),
+    );
   }
 }
