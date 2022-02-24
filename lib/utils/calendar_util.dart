@@ -19,7 +19,7 @@ class Event {
 final kEvents = LinkedHashMap<DateTime, List<Event>>(
   equals: isSameDay,
   hashCode: getHashCode,
-)..addAll({DateTime.now():[Event(';;;')],DateTime(2022,02,17):[Event('lll')],DateTime(2022,02,25):[Event('lll')]});
+)..addAll({DateTime(2022,02,28):[Event('2'),Event('aaa')],DateTime(2022,02,17):[Event('lll')],DateTime(2022,02,25):[Event('lll')]});
 
 final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
     key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5),

@@ -9,7 +9,8 @@ class Poster{
     required this.to,
     required this.location,
     required this.state,
-    required this.openRun
+    required this.openRun,
+    required this.awards,
 
   });
 
@@ -22,6 +23,7 @@ class Poster{
   String location;
   String state;
   String openRun;
+  String awards;
 
   factory Poster.fromJson(Map<String, dynamic> json) => Poster(
     name: json["prfnm"]?? "name",
@@ -33,6 +35,7 @@ class Poster{
     location: json["fcltynm"]?? "location",
     state: json["prfstate"]?? "state",
     openRun: json["openrun"]?? "openRun",
+    awards: json["awards"]?? "award",
   );
 
 }
@@ -73,6 +76,7 @@ class Ranking {
     period: json["prfpd"]?? "period",
     seat: json["seatcnt"]?? "seat",
     area: json["area"] ?? "no area",
+
   );
 }
 

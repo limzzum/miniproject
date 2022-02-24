@@ -214,13 +214,6 @@ class _CalendarPageState extends State<CalendarPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   toolbarHeight: 40.w,
-        //   backgroundColor: Colors.white,
-        //   foregroundColor: Colors.black,
-        //   shadowColor: Colors.transparent,
-        //   title: Text('TableCalendar - Complex'),
-        //),
         body: Column(
           children: [
             ValueListenableBuilder<DateTime>(
@@ -230,7 +223,30 @@ class _CalendarPageState extends State<CalendarPage> {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Row(
                       children: [
-                        SizedBox(width: 16.w),
+
+                        IconButton(
+                          icon: Icon(Icons.chevron_left),
+                          onPressed: () {
+
+                            _pageController.previousPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.easeOut,
+                            );
+
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.chevron_right),
+                          onPressed: () {
+                            _pageController.nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.easeOut,
+                            );
+                          },
+                        ),
+                        SizedBox(
+                          width: 40.w,
+                        ),
                         GestureDetector(
                           onTap: () {
                             myDatePicker(context);
@@ -245,25 +261,15 @@ class _CalendarPageState extends State<CalendarPage> {
                         ),
                         const Spacer(),
                         IconButton(
-                          icon: Icon(Icons.chevron_left),
-                          onPressed: () {
+                            onPressed: (){
 
-                              _pageController.previousPage(
-                                duration: Duration(milliseconds: 300),
-                                curve: Curves.easeOut,
-                              );
-
-                          },
-                        ),
+                            }, icon: Icon(Icons.add)),
                         IconButton(
-                          icon: Icon(Icons.chevron_right),
-                          onPressed: () {
-                            _pageController.nextPage(
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.easeOut,
-                            );
-                          },
-                        ),
+                            padding: EdgeInsets.only(right: 15.w),
+                            onPressed: (){
+
+                            }, icon: Icon(Icons.settings)),
+
                       ],
                     ),
                   );

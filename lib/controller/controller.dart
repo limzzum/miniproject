@@ -24,6 +24,8 @@ class Controller extends GetxController{
   late UserInfo userInfo;
   List<List<Poster>> poster=[[],[],[],[],[],[]];
   List<List<Ranking>> ranking=[[],[],[],[],[],[]];
+  List<List<Poster>> awards=[[],[],[],[],[],[]];
+  List<List<Poster>> completed=[[],[],[],[],[],[]];
   late DetailPoster detailPoster;
   List<Poster> searchResult=[];
 
@@ -39,6 +41,7 @@ class Controller extends GetxController{
     update();
     return 'data load';
   }
+
 
   loadUserInfo() async{
     userInfo= await ApiRepository().callUserInfo(Application.preferences.get(KEY.accessToken));
@@ -59,8 +62,20 @@ class Controller extends GetxController{
   }
   loadPoster(key) async{
     print('loadposter호출');
-    poster[key]=await ApiRepository().callPoster(choice[key]) ;
+    poster[key]=await ApiRepository().callPoster(choice[key],"02") ;
     print("poster[$key]+${poster[key]}");
+    update();
+  }
+  loadPastPerform(key) async{
+    print('comingsoon');
+    completed[key]=await ApiRepository().callPoster(choice[key],"03") ;
+    print("coming[$key]+${completed[key]}");
+    update();
+  }
+  loadAwards(key) async{
+    print('loadposter호출');
+    awards[key]=await ApiRepository().callAwardsWinning(choice[key]) ;
+    print("awards[$key]+${awards[key]}");
     update();
   }
   loadRanking(key) async{

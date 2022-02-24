@@ -486,7 +486,7 @@ class _ReviewPageState extends State<ReviewPage> {
             color: _.goodSelected.contains(text)?Colors.orangeAccent:Colors.grey,
             borderRadius: BorderRadius.circular(8.w)
         ),
-        child: Text(text),
+        child: Text(text,style: TextStyle(color: _.goodSelected.contains(text)?Colors.white:Colors.black),),
       ),)
     );
   }

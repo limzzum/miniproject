@@ -60,6 +60,8 @@ Map<String,String> ko={
   'production':'연출',
   'profileEdit':'프로필 수정',
   'performing':'공연중',
+  'past':'지난',
+  'perform':'공연',
 
   //Q
 

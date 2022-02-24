@@ -42,17 +42,19 @@ class ApiRepository{
   }
 
   //전체포스터 장르
-  Future<List<Poster>> callPoster(kind) async{
+  Future<List<Poster>> callPoster(kind,state) async{
     List<Poster> nullList=[];
     print("calldata");
     print(kind);
     Uri uri = Uri.parse(
-        BaseUrl.loadPosterUrl+"&prfstate=02&shcate=$kind");
+        BaseUrl.loadPosterUrl+"&prfstate=$state&shcate=$kind");
     var response = await http.get(uri);
     XmlDocument result= XmlDocument.parse(response.body);
 
     var xmltojson= Xml2Json()..parse(result.toXmlString());
     var json= jsonDecode(xmltojson.toParker());
+    print(json);
+    print('here');
     var list= json["dbs"]["db"];
     print(list);
 
@@ -128,6 +130,30 @@ class ApiRepository{
     print(list);
 
     return DetailPoster.fromJson(list);
+  }
+
+  //수상작들
+  Future<List<Poster>> callAwardsWinning(type) async{
+    List<Poster> nullList=[];
+
+    Uri uri = Uri.parse(
+        BaseUrl.awardsUrl+"&shcate=$type");
+    var response = await http.get(uri);
+    XmlDocument result= XmlDocument.parse(response.body);
+
+    var xmltojson= Xml2Json()..parse(result.toXmlString());
+    var json= jsonDecode(xmltojson.toParker());
+    print(json);
+    var list= json["dbs"]["db"];
+    print('list=$list');
+    if(list!=null) {
+      try{
+        return list.map<Poster>((e) => Poster.fromJson(e)).toList();}
+      catch(e){
+        return [Poster.fromJson(list)];
+      }
+    }
+    return nullList;
   }
 
 

@@ -62,6 +62,8 @@ Map<String,String> en={
   'production':'production',
   'profileEdit':'profile edit',
   'performing':'performing',
+  'past':'past',
+  'perform':'perform',
   //Q
 
   //R
