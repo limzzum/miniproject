@@ -50,7 +50,13 @@
   - 디자인 : 이수연 & 김영운
 
 ## 5.UI/BM 🖼
-
+![simul-1](https://github.com/limzzum/miniproject/assets/69624097/d1832f63-984d-41d2-ad68-92f44b4559c7)
+![simul-2](https://github.com/limzzum/miniproject/assets/69624097/46ccca11-98a2-493d-a70f-ca1a99353f1e)
+![simul-3](https://github.com/limzzum/miniproject/assets/69624097/f21f1987-c1a9-4bcb-9b21-bdf06df81f13)
+![simul-4](https://github.com/limzzum/miniproject/assets/69624097/9e349b81-3ce6-439f-ae19-ca4345614289)
+![simul-5](https://github.com/limzzum/miniproject/assets/69624097/e98c6604-3c42-4922-b673-26aad4c934a2)
+![simul-6](https://github.com/limzzum/miniproject/assets/69624097/9150485d-c6ec-4797-8f5c-f50baf345d47)
+![simul-7](https://github.com/limzzum/miniproject/assets/69624097/c1b712a6-1356-459f-93f2-9f20314555be)
 
 <!--## 6. 데이터베이스 모델링 ERD 🏗-->
 
